@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Crear Usuario')
+@section('title', 'Crear Dependencia')
 
 @section('Content')
 <div class="d-flex justify-content-center align-items-center" style="min-height:100vh; background:#f7f7f7;">
     <div class="p-4 shadow" style="width:420px; background:white; border-radius:8px;">
 
-        {{-- Encabezado--}}
         <div class="d-flex justify-content-between align-items-center mb-4 px-2">
             {{-- Texto GestionTurnos --}}
             <div>
@@ -26,45 +25,23 @@
 
         {{-- Título del formulario --}}
         <div class="text-center mb-3">
-            <h5 class="fw-bold text-dark">REGISTRO DE USUARIO</h5>
+            <h5 class="fw-bold text-dark">REGISTRO DE DEPENDENCIAS</h5>
         </div>
 
-        <form action="{{ route('usuario.store') }}" method="POST">
+        <form action="{{route('dependencia.store')}}" method="POST">
             @csrf
 
-            {{-- Tipo de Documento --}}
-            <div class="mb-3">
-                <select name="tipoDocumento" class="form-select form-select-sm" required>
-                    <option value="">Tipo de Documento</option>
-                    <option value="Tarjeta De Identidad">Tarjeta de Identidad</option>
-                    <option value="Cedula De Ciudadania">Cédula de Ciudadanía</option>
-                    <option value="Cedula De Extranjeria">Cédula de Extranjería</option>
-                    <option value="Permiso Por Proteccion Temporal">Permiso por Protección Temporal</option>
-                </select>
-            </div>
-
-            {{-- Número de Documento --}}
-            <div class="mb-3">
-                <input type="text" name="numeroDocumento" class="form-control form-control-sm"
-                       placeholder="Número de Documento" required>
-            </div>
-
-            {{-- Nombre --}}
+            {{-- Nombre De La Dependencia--}}
             <div class="mb-3">
                 <input type="text" name="nombre" class="form-control form-control-sm"
-                       placeholder="Nombre del Usuario" required>
+                       placeholder="Nombre de la Dependencia" required>
+            
             </div>
 
-            {{-- Correo --}}
+            {{-- Descripcion--}}
             <div class="mb-3">
-                <input type="email" name="correo" class="form-control form-control-sm"
-                       placeholder="Correo" required>
-            </div>
-
-            {{-- Teléfono --}}
-            <div class="mb-3">
-                <input type="text" name="telefono" class="form-control form-control-sm"
-                       placeholder="Teléfono" required>
+                <input type="text" name="descripcion" class="form-control form-control-sm"
+                       placeholder="Descripcion de la Dependencia" required>
             </div>
 
             {{-- Botón Guardar --}}
@@ -76,7 +53,7 @@
 
             {{-- Botón Volver --}}
             <div class="text-center mt-3">
-                <a href="{{ route('usuario.index') }}"
+                <a href="{{ route('dependencia.index') }}"
                    class="btn btn-link text-decoration-none text-danger fw-semibold">
                     ← Volver
                 </a>

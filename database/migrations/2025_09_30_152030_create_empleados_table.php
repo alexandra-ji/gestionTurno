@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('empleados', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipoDocumento',['Tarjeta De Identidad','Cedula De Ciudadania','Cedula De Extranjeria','Permiso Por Proteccion Temporal']);
+            $table->string('nombreCompleto');
             $table->string('numeroDocumento',20);
-            $table->string('nombre',100);
-            $table->string('correo',100);
             $table->string('telefono',20);
+            $table->string('correo',100);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('empleados');
     }
 };

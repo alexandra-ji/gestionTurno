@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class EmpleadoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $usuarios = Usuario::all();
-        return view('Usuario.index', compact('usuarios'));
+        $empleados = Empleado::all();
+        return view('Empleado.index', compact('empleados'));
     }
 
     /**
@@ -21,7 +21,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('Usuario.create');
+        return view('empleado.create');
     }
 
     /**
@@ -29,16 +29,16 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        Usuario::create(
-             $request->all());
-
-             return redirect()->route('usuario.index');
+        Empleado ::create(
+            $request->all()
+        );
+        return redirect()->route('empleado.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show(Empleado $empleado)
     {
         //
     }
@@ -48,8 +48,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-         $usuarios = Usuario::findorFail($id);
-         return view('Usuario.edit', compact('usuarios'));
+       $empleados =Empleado::findorFail($id); 
+       return view('Empleado.edit', compact('empleados'));
     }
 
     /**
@@ -57,21 +57,18 @@ class UsuarioController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $usuarios = Usuario::findorFail($id);
-        $usuarios->update($request->all()); 
-
-        return redirect()->route('usuario.index');
+       $empleados = Empleado::findorFail($id);
+       $empleados->update($request->all());
+       return redirect()->route('empleado.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy( $id)
     {
-         $usuarios = Usuario::findorFail($id);
-        $usuarios->delete();
-
-        return redirect()->route('usuario.index');
-        
+        $empleados = Empleado::findorFail($id);
+        $empleados->delete();
+        return redirect()->route('empleado.index'); 
     }
 }

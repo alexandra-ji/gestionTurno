@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Administrar Usuarios')
+@section('title', 'Administrar Empleados')
 
 @section('titleContent')
+    
     <div class="bg-white shadow-sm">
         <div class="container d-flex justify-content-between align-items-center py-3">
             <!-- Logo y título -->
@@ -27,7 +28,7 @@
     </div>
 
     {{-- TÍTULO DE LA SECCIÓN --}}
-    <h3 class="text-center my-4 fw-bold" style="color:#333;">Administrar Usuarios</h3>
+    <h3 class="text-center my-4 fw-bold" style="color:#333;">Administrar Empleados</h3>
 @endsection
 
 @section('Content')
@@ -43,14 +44,14 @@
         </a>
 
         <!-- Botón Crear -->
-        <a href="{{ route('usuario.create') }}"
+        <a href="{{ route('empleado.create') }}"
            class="btn fw-bold px-4 shadow-sm"
            style="background-color:green; color:white; border-radius:8px;">
-            <i class="bi bi-person-plus-fill"></i> Crear Usuario
-        </a>
+            <i class="bi bi-person-plus-fill"></i> Crear Empleado
+        </a> 
     </div>
 
-    {{-- TABLA DE USUARIOS --}}
+    {{-- TABLA DE EMPLEADOS --}}
     <div class="row">
         <div class="col-12">
             <div class="table-responsive rounded shadow-sm">
@@ -59,32 +60,30 @@
                     <thead style="background-color:#a8e6a1; color:#333;">
                         <tr>
                             <th>ID</th>
-                            <th>Tipo Documento</th>
-                            <th>Número Documento</th>
-                            <th>Nombre</th>
+                            <th>nombreCompleto</th>
+                            <th>NúmeroDocumento</th>
+                            <th>Telefono</th>
                             <th>Correo</th>
-                            <th>Teléfono</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($usuarios as $usuario)
+                        @foreach($empleados as $empleado)
                         <tr>
-                            <td>{{ $usuario->id }}</td>
-                            <td>{{ $usuario->tipoDocumento }}</td>
-                            <td>{{ $usuario->numeroDocumento }}</td>
-                            <td>{{ $usuario->nombre }}</td>
-                            <td>{{ $usuario->correo }}</td>
-                            <td>{{ $usuario->telefono }}</td>
+                            <td>{{ $empleado->id }}</td>
+                            <td>{{ $empleado->nombreCompleto }}</td>
+                            <td>{{ $empleado->numeroDocumento }}</td>
+                            <td>{{ $empleado->telefono }}</td>
+                            <td>{{ $empleado->correo }}</td>
                             <td class="d-flex justify-content-center gap-2">
                                 <!-- Botón Editar -->
-                                <a href="{{ route('usuario.edit', $usuario->id) }}"
+                                <a href="{{route('empleado.edit',$empleado->id)}}"
                                    class="btn btn-sm fw-bold px-3 shadow-sm"
                                    style="background-color:green; color:white; border-radius:6px;">
                                     <i class="bi bi-pencil-square"></i> Editar
                                 </a>
                                 <!-- Botón Eliminar (ROJO) -->
-                                <form action="{{ route('usuario.destroy', $usuario->id) }}" method="post">
+                                <form action="{{route('empleado.destroy',$empleado->id)}}" method="post">
                                     @csrf
                                     <button type="submit"
                                             class="btn btn-sm fw-bold px-3 shadow-sm"
