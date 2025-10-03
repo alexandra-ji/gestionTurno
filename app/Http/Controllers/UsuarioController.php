@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsuarioRequest;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -27,10 +28,10 @@ class UsuarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UsuarioRequest $request)
     {
         Usuario::create(
-             $request->all());
+             request()->all());
 
              return redirect()->route('usuario.index');
     }
@@ -55,7 +56,7 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(UsuarioRequest $request,$id)
     {
         $usuarios = Usuario::findorFail($id);
         $usuarios->update($request->all()); 

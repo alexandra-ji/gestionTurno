@@ -35,7 +35,7 @@
 
             {{-- Tipo de Documento --}}
             <div class="mb-3">
-                <select name="tipoDocumento" class="form-select form-select-sm" required>
+                <select name="tipoDocumento" class="form-select form-select-sm" >
                     <option value="Tarjeta De Identidad" 
                         {{ $usuarios->tipoDocumento=='Tarjeta De Identidad'?'selected':'' }}>
                         Tarjeta de Identidad
@@ -57,26 +57,26 @@
 
             {{-- Número de Documento --}}
             <div class="mb-3">
-                <input type="text" name="numeroDocumento" class="form-control form-control-sm"
-                       value="{{ $usuarios->numeroDocumento }}" placeholder="Número de Documento" required>
+                <input type="number" name="numeroDocumento" class="form-control form-control-sm"
+                       value="{{ $usuarios->numeroDocumento }}" placeholder="Número de Documento" >
             </div>
 
             {{-- Nombre --}}
             <div class="mb-3">
                 <input type="text" name="nombre" class="form-control form-control-sm"
-                       value="{{ $usuarios->nombre }}" placeholder="Nombre del Usuario" required>
+                       value="{{ $usuarios->nombre }}" placeholder="Nombre del Usuario" >
             </div>
 
             {{-- Correo --}}
             <div class="mb-3">
                 <input type="email" name="correo" class="form-control form-control-sm"
-                       value="{{ $usuarios->correo }}" placeholder="Correo" required>
+                       value="{{ $usuarios->correo }}" placeholder="Correo" >
             </div>
 
             {{-- Teléfono --}}
             <div class="mb-3">
-                <input type="text" name="telefono" class="form-control form-control-sm"
-                       value="{{ $usuarios->telefono }}" placeholder="Teléfono" required>
+                <input type="number" name="telefono" class="form-control form-control-sm"
+                       value="{{ $usuarios->telefono }}" placeholder="Teléfono" >
             </div>
 
             {{-- Botón Guardar --}}

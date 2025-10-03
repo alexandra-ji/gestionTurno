@@ -34,37 +34,56 @@
 
             {{-- Tipo de Documento --}}
             <div class="mb-3">
-                <select name="tipoDocumento" class="form-select form-select-sm" required>
+                <select name="tipoDocumento" class="form-select form-select-sm  @error('tipoDocumento') is-invalid @enderror">
                     <option value="">Tipo de Documento</option>
                     <option value="Tarjeta De Identidad">Tarjeta de Identidad</option>
                     <option value="Cedula De Ciudadania">Cédula de Ciudadanía</option>
                     <option value="Cedula De Extranjeria">Cédula de Extranjería</option>
                     <option value="Permiso Por Proteccion Temporal">Permiso por Protección Temporal</option>
                 </select>
+                @error('tipoDocumento')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Número de Documento --}}
             <div class="mb-3">
-                <input type="text" name="numeroDocumento" class="form-control form-control-sm"
-                       placeholder="Número de Documento" required>
+                <input type="number" name="numeroDocumento" class="form-control form-control-sm @error('numeroDocumento') is-invalid @enderror"
+                       placeholder="Número de Documento" >
+
+                       @error('numeroDocumento')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Nombre --}}
             <div class="mb-3">
-                <input type="text" name="nombre" class="form-control form-control-sm"
-                       placeholder="Nombre del Usuario" required>
+                <input type="text" name="nombre" class="form-control form-control-sm @error('nombre') is-invalid @enderror"
+                       placeholder="Nombre del Usuario" >
+
+                       @error('nombre')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Correo --}}
             <div class="mb-3">
-                <input type="email" name="correo" class="form-control form-control-sm"
-                       placeholder="Correo" required>
+                <input type="email" name="correo" class="form-control form-control-sm @error('correo') is-invalid @enderror"
+                       placeholder="Correo" >
+
+                       @error('correo')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Teléfono --}}
             <div class="mb-3">
-                <input type="text" name="telefono" class="form-control form-control-sm"
-                       placeholder="Teléfono" required>
+                <input type="number" name="telefono" class="form-control form-control-sm @error('telefono') is-invalid @enderror"
+                       placeholder="Teléfono" >
+
+                       @error('telefono')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Botón Guardar --}}

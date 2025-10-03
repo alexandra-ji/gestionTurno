@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServicioRequest;
 use App\Models\Dependencia;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class ServicioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServicioRequest $request)
     {
         Servicio::create(
                 $request->all());
@@ -58,7 +59,7 @@ class ServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ServicioRequest $request, $id)
     {
         $servicios = Servicio::findorFail($id);
         $servicios->update($request->all());

@@ -32,27 +32,44 @@
 
             {{-- Nombre Completo --}}
             <div class="mb-3">
-                <input type="text" name="nombreCompleto" class="form-control form-control-sm"
-                       placeholder="Nombre Completo del Empleado" required>
+                <input type="text" name="nombreCompleto" class="form-control form-control-sm  @error('nombreCompleto') is-invalid @enderror"
+                       placeholder="Nombre Completo del Empleado">
+
+                        @error('nombreCompleto')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Número de Documento --}}
             <div class="mb-3">
-                <input type="text" name="numeroDocumento" class="form-control form-control-sm"
-                       placeholder="Número de Documento" required>
+                <input type="number" name="numeroDocumento" class="form-control form-control-sm  @error('numeroDocumento') is-invalid @enderror"
+                       placeholder="Número de Documento">
+                        @error('numeroDocumento')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
 
             {{-- Teléfono --}}
             <div class="mb-3">
-                <input type="text" name="telefono" class="form-control form-control-sm"
-                       placeholder="Teléfono" required>
+                <input type="number" name="telefono" class="form-control form-control-sm  @error('telefono') is-invalid @enderror"
+                       placeholder="Teléfono">
+
+                        @error('telefono')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Correo --}}
             <div class="mb-3">
-                <input type="email" name="correo" class="form-control form-control-sm"
-                       placeholder="Correo" required>
+                <input type="email" name="correo" class="form-control form-control-sm @error('correo') is-invalid @enderror"
+                       placeholder="Correo" >
+
+                        @error('correo')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+
+
             </div>
 
             

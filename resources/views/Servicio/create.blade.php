@@ -34,24 +34,35 @@
             {{-- Nombre Del Servicio--}}
             <div class="mb-3">
                 
-                <input type="text" name="nombreServicio" class="form-control form-control-sm"
-                       placeholder="Nombre del Servicio" required>
+                <input type="text" name="nombreServicio" class="form-control form-control-sm  @error('nombreServicio') is-invalid @enderror"
+                       placeholder="Nombre del Servicio" >
+                        @error('nombreServicio')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Descripcion--}}
             <div class="mb-3">
-                <input type="text" name="descripcion" class="form-control form-control-sm"
-                       placeholder="Descripcion deL servicio" required>
+                <input type="text" name="descripcion" class="form-control form-control-sm   @error('descripcion') is-invalid @enderror"
+                       placeholder="Descripcion deL servicio" >
+
+                        @error('descripcion')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
 
             <div>
-                        <label for="Dependencia" class="form-label">Dependencia</label>
+                        <label for="Dependencia" class="form-label   @error('Dependencia') is-invalid @enderror">Dependencia</label>
                         <select name="idDependencia" id="idDependencia" class="form-select">
                             @foreach($dependencias as $dependencia)
                             <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
                             @endforeach
                         </select>
+
+                         @error('Dependencia')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                     </div>
 
 

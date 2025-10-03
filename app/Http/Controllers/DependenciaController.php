@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DependenciaRequest;
 use App\Models\Dependencia;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class DependenciaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DependenciaRequest $request)
     {
         Dependencia::create(
              $request->all());
@@ -55,7 +56,7 @@ class DependenciaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(DependenciaRequest $request, $id)
     {
         $dependencias= Dependencia::findorFail($id);
         $dependencias->update($request->all());

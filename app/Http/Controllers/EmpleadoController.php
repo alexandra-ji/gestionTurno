@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmpleadoRequest;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class EmpleadoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmpleadoRequest $request)
     {
         Empleado ::create(
             $request->all()
@@ -55,7 +56,7 @@ class EmpleadoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(EmpleadoRequest $request,$id)
     {
        $empleados = Empleado::findorFail($id);
        $empleados->update($request->all());

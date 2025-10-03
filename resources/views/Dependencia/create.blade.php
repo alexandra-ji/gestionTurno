@@ -33,15 +33,23 @@
 
             {{-- Nombre De La Dependencia--}}
             <div class="mb-3">
-                <input type="text" name="nombre" class="form-control form-control-sm"
-                       placeholder="Nombre de la Dependencia" required>
+                <input type="text" name="nombre" class="form-control form-control-sm  @error('nombre') is-invalid @enderror"
+                       placeholder="Nombre de la Dependencia" >
+
+                         @error('nombre')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             
             </div>
 
             {{-- Descripcion--}}
             <div class="mb-3">
-                <input type="text" name="descripcion" class="form-control form-control-sm"
-                       placeholder="Descripcion de la Dependencia" required>
+                <input type="text" name="descripcion" class="form-control form-control-sm  @error('descripcion') is-invalid @enderror"
+                       placeholder="Descripcion de la Dependencia">
+
+                         @error('descripcion')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             {{-- Botón Guardar --}}
