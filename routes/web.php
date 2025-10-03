@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\EmpleadoDependenciaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\Servicio;
@@ -53,5 +54,17 @@ Route::post('/Servicios/store',[ServicioController::class,'store'])->name('servi
 Route::post('/Servicios/update/{id}',[ServicioController::class,'update'])->name('servicio.update');
 Route::get('/Servicios/edit/{id}',[ServicioController::class,'edit'])->name('servicio.edit');
 Route::post('/Servicios/destroy/{id}',[ServicioController::class,'destroy'])->name('servicio.destroy');
+
+
+
+//rutas para EmpleadoDependencia
+
+
+Route::get('/EmpleadoDependencia/index',[EmpleadoDependenciaController::class,'index'])->name('EmpleadoD.index');
+Route::get('/EmpleadoDependencia/create',[EmpleadoDependenciaController::class,'create'])->name('EmpleadoD.create');
+Route::post('/EmpleadoDependencia/store',[EmpleadoDependenciaController::class,'store'])->name('EmpleadoD.store');
+Route::post('/EmpleadoDependencia/update/{id}',[EmpleadoDependenciaController::class,'update'])->name('EmpleadoD.update');
+Route::get('/EmpleadoDependencia/edit/{id}',[EmpleadoDependenciaController::class,'edit'])->name('EmpleadoD.edit');
+Route::post('/EmpleadoDependencia/destroy/{id}',[EmpleadoDependenciaController::class,'destroy'])->name('EmpleadoD.destroy');
 
 

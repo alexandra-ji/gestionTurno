@@ -14,4 +14,10 @@ class Empleado extends Model
         'telefono',
         'correo',
     ];
+
+
+    public function EmpleadoDependencias()
+    {
+        return $this->hasMany(EmpleadoDependencia::class, 'idEmpleado');
+    }
 }

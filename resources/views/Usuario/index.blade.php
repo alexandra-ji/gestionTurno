@@ -19,9 +19,9 @@
         <div class="bg-success">
             <div class="container d-flex justif y-content-center gap-5 py-2">
                 <a href="{{ route('welcome') }}" class="text-white fw-semibold text-decoration-none">Inicio</a>
-                <a href="#" class="text-white fw-semibold text-decoration-none">Servicios </a>
-                <a href="#" class="text-white fw-semibold text-decoration-none">Empleados</a>
-                <a href="#" class="text-white fw-semibold text-decoration-none">Dependencias</a>
+                <a href="{{route('servicio.index')}}" class="text-white fw-semibold text-decoration-none">Servicios </a>
+                <a href="{{route('empleado.index')}}" class="text-white fw-semibold text-decoration-none">Empleados</a>
+                <a href="{{route('dependencia.index')}}" class="text-white fw-semibold text-decoration-none">Dependencias</a>
             </div>
         </div>
     </div>

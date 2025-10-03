@@ -15,4 +15,8 @@ class Dependencia extends Model
     public function Servicios(){
         return $this->hasMany(Servicio::class,'idDependencia');
     }
+
+       public function EmpleadoDependencia(){
+        return $this->hasMany(EmpleadoDependencia::class,'idDependencia');
+    }
 }
