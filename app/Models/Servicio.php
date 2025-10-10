@@ -19,4 +19,9 @@ class Servicio extends Model
         return $this->belongsTo(Dependencia::class,'idDependencia');
 }
 
+
+    public function Turnos(){
+        return $this->hasMany(Turnos::class,'idTurno');
+}
+
 }

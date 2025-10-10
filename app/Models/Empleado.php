@@ -20,4 +20,11 @@ class Empleado extends Model
     {
         return $this->hasMany(EmpleadoDependencia::class, 'idEmpleado');
     }
+
+    public function Turnos()
+    {
+        return $this->hasMany(Turnos::class, 'idTurno');
+    }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmpleadoDependenciaRequest;
 use App\Models\Dependencia;
 use App\Models\Empleado;
 use App\Models\EmpleadoDependencia;
@@ -32,7 +33,7 @@ class EmpleadoDependenciaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmpleadoDependenciaRequest $request)
     {
         EmpleadoDependencia::create(
             $request->all());
@@ -61,7 +62,7 @@ class EmpleadoDependenciaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(EmpleadoDependenciaRequest $request, $id)
     {
         $EmpleadoDe = EmpleadoDependencia::findorFail($id);
         $EmpleadoDe->update($request->all());

@@ -4,6 +4,7 @@ use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpleadoDependenciaController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\Servicio;
 use App\Models\Usuario;
@@ -66,5 +67,16 @@ Route::post('/EmpleadoDependencia/store',[EmpleadoDependenciaController::class,'
 Route::post('/EmpleadoDependencia/update/{id}',[EmpleadoDependenciaController::class,'update'])->name('EmpleadoD.update');
 Route::get('/EmpleadoDependencia/edit/{id}',[EmpleadoDependenciaController::class,'edit'])->name('EmpleadoD.edit');
 Route::post('/EmpleadoDependencia/destroy/{id}',[EmpleadoDependenciaController::class,'destroy'])->name('EmpleadoD.destroy');
+
+
+//rutas para Turnos
+
+
+Route::get('/Turnos/index',[TurnosController::class,'index'])->name('Turno.index');
+Route::get('/Turnos/create',[TurnosController::class,'create'])->name('Turno.create');
+Route::post('/Turnos/store',[TurnosController::class,'store'])->name('Turno.store');
+Route::post('/Turnos/update/{id}',[TurnosController::class,'update'])->name('Turno.update');
+Route::get('/Turnos/edit/{id}',[TurnosController::class,'edit'])->name('Turno.edit');
+Route::post('/Turnos/destroy/{id}',[TurnosController::class,'destroy'])->name('Turno.destroy');
 
 

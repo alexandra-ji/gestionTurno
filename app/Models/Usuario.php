@@ -17,4 +17,8 @@ class Usuario extends Model
         
 
     ];
+
+    public function Turnos(){
+        return $this->hasMany(Turnos::class,'idTurno');
+    }
 }
