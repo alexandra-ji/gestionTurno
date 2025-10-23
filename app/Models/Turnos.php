@@ -14,18 +14,21 @@ class Turnos extends Model
         'fecha',
         'horaInicio',
         'horaFin',
+        'idUsuario',
+        'idServicio',
+        'idEmpleado',
        
     ];
 
-    public function Usuarios(){
-        return $this->belongsTo(Usuario::class,'idTurno');
+    public function usuario(){
+        return $this->belongsTo(Usuario::class,'idUsuario');
     }
 
-     public function Servicios(){
-        return $this->belongsTo(Servicio::class,'idTurno');
+     public function Servicio(){
+        return $this->belongsTo(Servicio::class,'idServicio');
     }
 
-     public function Empleados(){
-        return $this->belongsTo(Empleado::class,'idTurno');
+     public function empleado(){
+        return $this->belongsTo(Empleado::class,'idEmpleado');
     }
 }

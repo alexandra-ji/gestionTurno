@@ -44,14 +44,7 @@
                         {{ $usuarios->tipoDocumento=='Cedula De Ciudadania'?'selected':'' }}>
                         Cédula de Ciudadanía
                     </option>
-                    <option value="Cedula De Extranjeria" 
-                        {{ $usuarios->tipoDocumento=='Cedula De Extranjeria'?'selected':'' }}>
-                        Cédula de Extranjería
-                    </option>
-                    <option value="Permiso Por Proteccion Temporal" 
-                        {{ $usuarios->tipoDocumento=='Permiso Por Proteccion Temporal'?'selected':'' }}>
-                        Permiso por Protección Temporal
-                    </option>
+    
                 </select>
             </div>
 

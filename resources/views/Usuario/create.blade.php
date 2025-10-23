@@ -38,10 +38,7 @@
                     <option value="">Tipo de Documento</option>
                     <option value="Tarjeta De Identidad">Tarjeta de Identidad</option>
                     <option value="Cedula De Ciudadania">Cédula de Ciudadanía</option>
-                    <option value="Cedula De Extranjeria">Cédula de Extranjería</option>
-                    <option value="Permiso Por Proteccion Temporal">Permiso por Protección Temporal</option>
-                </select>
-                @error('tipoDocumento')
+                 @error('tipoDocumento')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

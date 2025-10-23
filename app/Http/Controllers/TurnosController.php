@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TurnoRequest;
+use App\Models\Empleado;
+use App\Models\Servicio;
 use App\Models\Turnos;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class TurnosController extends Controller
@@ -22,17 +26,20 @@ class TurnosController extends Controller
     public function create()
     {
         $turnos = Turnos::all();
-        return view('Turnos.create', compact('turnos'));
+        $usuarios = Usuario::all();
+        $servicios = Servicio::all();
+        $empleados = Empleado::all();
+        return view('Turnos.create', compact('turnos','usuarios', 'servicios', 'empleados'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TurnoRequest $request)
     {
         Turnos::create(
                 $request->all());
-                return redirect()->route('turnos.index');   
+                return redirect()->route('Turno.index');   
     }
 
     /**
@@ -49,22 +56,29 @@ class TurnosController extends Controller
     public function edit($id)
     {
         $turnos = Turnos::findorFail($id);
-        $empleados = Turnos::all();
+        $empleados = Empleado::all();
+        $usuarios = Usuario::all();
+        $servicios = Servicio::all();
+        return view('Turnos.edit', compact('turnos' , 'empleados','usuarios','servicios'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Turnos $turnos)
+    public function update(TurnoRequest $request, $id)
     {
-        //
+       $turnos = Turnos::findorFail($id);
+       $turnos->update($request->all());
+       return redirect()->route('Turno.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Turnos $turnos)
+    public function destroy($id)
     {
-        //
+        $turnos = Turnos::findorFail($id);
+        $turnos->delete();
+        return redirect()->route('Turno.index');   
     }
 }

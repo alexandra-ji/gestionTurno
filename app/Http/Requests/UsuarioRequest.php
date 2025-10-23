@@ -22,7 +22,7 @@ class UsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tipoDocumento' => 'required|in:Tarjeta De Identidad,Cedula De Ciudadania,Cedula De Extranjeria,Permiso Por Proteccion Temporal',
+        'tipoDocumento' => 'required|in:Tarjeta De Identidad,Cedula De Ciudadania,Cedula De Extranjeria,Permiso Por Proteccion Temporal',
         'numeroDocumento' => 'required|digits_between:5,20|regex:/^[0-9]+$/',
         'nombre' => 'required|string|max:100|min:3',
         'correo' => 'required|string|email|max:100',

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('codigoTurno');
             $table->string('estadoTurno');
-            $table->date('fecha');
+            $table->date('fecha')->default(DB::raw('CURRENT_DATE'));
             $table->time('horaInicio');
             $table->time('horaFin');
             $table->unsignedBigInteger('idUsuario');
