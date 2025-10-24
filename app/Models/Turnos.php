@@ -31,4 +31,8 @@ class Turnos extends Model
      public function empleado(){
         return $this->belongsTo(Empleado::class,'idEmpleado');
     }
+
+    public function historialServicio(){
+        return $this->hasMany(HistorialServicio::class, 'idTurno');
+    }
 }

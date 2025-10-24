@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nombreServicio');
             $table->string('descripcion');
-            $table->unsignedBigInteger('idDependencia');
             $table->foreign('idDependencia')->references('id')->on('dependencias');
             $table->timestamps();
         });

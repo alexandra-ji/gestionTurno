@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistorialServicio;
+use App\Models\Turnos;
 use Illuminate\Http\Request;
 
 class HistorialServicioController extends Controller
@@ -12,7 +13,8 @@ class HistorialServicioController extends Controller
      */
     public function index()
     {
-        //
+        $historial = HistorialServicio::all();
+        return view ('HistorialServicio.index', compact('historial'));
     }
 
     /**
@@ -20,7 +22,9 @@ class HistorialServicioController extends Controller
      */
     public function create()
     {
-        //
+        $historial = HistorialServicio::all();
+        $turnos = Turnos::all();
+        return view('HistorialServicio.create',compact('historial','turnos'));
     }
 
     /**
@@ -28,7 +32,10 @@ class HistorialServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        HistorialServicio::create(
+            $request->all()
+        );
+        return redirect()->route('Historial.index');
     }
 
     /**
@@ -42,24 +49,31 @@ class HistorialServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(HistorialServicio $historialServicio)
+    public function edit( $id)
     {
-        //
+        $historial = HistorialServicio::findorFail($id);
+        $turnos= Turnos::all();
+        return view('HistorialServicio.edit', compact('historial', 'turnos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, HistorialServicio $historialServicio)
+    public function update(Request $request, $id)
     {
-        //
+        $historial = HistorialServicio::findorFail($id);
+        $historial ->update($request->all());
+        return redirect()->route('Historial.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(HistorialServicio $historialServicio)
+    public function destroy($id)
     {
-        //
+        $historial = HistorialServicio::findorFail($id);
+        $historial->delete();
+        return redirect()->route('Historial.index');
+
     }
 }

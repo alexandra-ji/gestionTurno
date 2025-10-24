@@ -3,6 +3,7 @@
 use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpleadoDependenciaController;
+use App\Http\Controllers\HistorialServicioController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\UsuarioController;
@@ -78,5 +79,15 @@ Route::post('/Turnos/store',[TurnosController::class,'store'])->name('Turno.stor
 Route::post('/Turnos/update/{id}',[TurnosController::class,'update'])->name('Turno.update');
 Route::get('/Turnos/edit/{id}',[TurnosController::class,'edit'])->name('Turno.edit');
 Route::post('/Turnos/destroy/{id}',[TurnosController::class,'destroy'])->name('Turno.destroy');
+
+//rutas para Historial de Servicios
+
+
+Route::get('/Historial/index',[HistorialServicioController::class,'index'])->name('Historial.index');
+Route::get('/Historial/create',[HistorialServicioController::class,'create'])->name('Historial.create');
+Route::post('/Historial/store',[HistorialServicioController::class,'store'])->name('Historial.store');
+Route::post('/Historial/update/{id}',[HistorialServicioController::class,'update'])->name('Historial.update');
+Route::get('/Historial/edit/{id}',[HistorialServicioController::class,'edit'])->name('Historial.edit');
+Route::post('/Historial/destroy/{id}',[HistorialServicioController::class,'destroy'])->name('Historial.destroy');
 
 
