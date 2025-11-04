@@ -33,7 +33,7 @@ class DependenciaController extends Controller
         Dependencia::create(
              $request->all());
 
-             return redirect()->route('dependencia.index');
+             return redirect()->route('dependencia.index') ->with('success', 'Dependencia Creada correctamente');
     }
 
     /**
@@ -72,7 +72,7 @@ class DependenciaController extends Controller
         $dependencias = Dependencia ::findorFail($id);
         $dependencias->delete();
 
-         return redirect()->route('dependencia.index');
+         return redirect()->route('dependencia.index')->with('success', 'Dependencia Eliminada correctamente');
 
 
     }

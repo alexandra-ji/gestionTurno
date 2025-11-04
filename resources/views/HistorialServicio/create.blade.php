@@ -33,9 +33,14 @@
 
             {{-- Fecha Salida--}}
             <div class="mb-3">
-                <label for="fechaSalida" class="form-label">Fecha Salida</label>
+                <label for="fechaSalida" class="form-label  @error('fechaSalida') is-invalid @enderror">Fecha Salida</label>
                 <input type="datetime-local" class="form-control" id="fechaSalida" name="fechaSalida">
+                 @error('fechaSalida')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
+            
+           
 
             <div>
                 <label for="idTurno" class="form-label   @error('idTurno') is-invalid @enderror">Turno</label>

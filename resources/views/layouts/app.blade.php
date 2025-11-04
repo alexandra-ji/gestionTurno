@@ -1,19 +1,26 @@
+@extends('adminlte::page')
+
+@section('title', $title ?? 'Dashboard')
+
+@section('content_header')
+    <h1>@yield('page-title', 'Admin Panel')</h1>
+@stop
+
+@section('content')
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
+
+    {{-- ✅ Bootstrap --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
           crossorigin="anonymous">
 
-    <!-- Bootstrap Icons -->
+    {{-- ✅ Bootstrap Icons --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <title>@yield('title')</title>
 
     <style>
         /* ✅ Verde institucional SENA */
@@ -32,23 +39,34 @@
         }
     </style>
 </head>
+
 <body>
 
-    <!-- ✅ Título de página -->
-    <div class="container mt-4">
-        @yield('titleContent')
-    </div>
-
-    <!-- ✅ Contenido principal -->
-    <div class="container my-3">
-        <div class="row">
+    {{-- ✅ Contenido principal dentro del layout AdminLTE --}}
+    <div class="container my-4">
+        <div class="row justify-content-center">
             @yield('Content')
         </div>
     </div>
 
-   
-    <!-- Scripts -->
+    {{-- ✅ Footer opcional --}}
+    <footer class="text-center">
+        <p class="text-muted mb-0">© {{ date('Y') }} SENA - Todos los derechos reservados</p>
+    </footer>
+
+    {{-- ✅ Scripts --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
 </body>
 </html>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin-custom.css') }}">
+    @stack('styles')
+@stop
+
+@section('js')
+    @stack('scripts')
+@stop

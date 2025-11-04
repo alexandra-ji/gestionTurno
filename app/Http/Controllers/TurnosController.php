@@ -16,7 +16,7 @@ class TurnosController extends Controller
      */
     public function index()
     {
-         $turnos = Turnos::all();
+        $turnos = Turnos::all();
         return view('Turnos.index', compact('turnos'));
     }
 
@@ -36,11 +36,32 @@ class TurnosController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(TurnoRequest $request)
-    {
-        Turnos::create(
-                $request->all());
-                return redirect()->route('Turno.index');   
-    }
+{
+    // Buscar el último turno creado para generar el siguiente número
+    $ultimoTurno = Turnos::latest('id')->first();
+    $numero = $ultimoTurno ? $ultimoTurno->id + 1 : 1;
+
+    // Generar el código con el formato T0001, T0002, T0003...
+    $codigoTurno = 'T' . str_pad($numero, 4, '0', STR_PAD_LEFT);
+
+    // Crear el nuevo turno incluyendo el código generado
+    $turno = Turnos::create([
+        'codigoTurno' => $codigoTurno,
+        'estadoTurno' => $request->estadoTurno,
+        'fecha' => now()->toDateString(),
+        'horaInicio' => $request->horaInicio,
+        'horaFin' => $request->horaFin,
+        'idUsuario' => $request->idUsuario,
+        'idServicio' => $request->idServicio,
+        'idEmpleado' => $request->idEmpleado,
+    ]);
+
+    // Redirigir mostrando mensaje y código generado
+    return redirect()->route('Turno.index')
+        ->with('success', 'Turno creado correctamente. Código: ' . $turno->codigoTurno);
+}
+
+
 
     /**
      * Display the specified resource.
@@ -67,9 +88,9 @@ class TurnosController extends Controller
      */
     public function update(TurnoRequest $request, $id)
     {
-       $turnos = Turnos::findorFail($id);
-       $turnos->update($request->all());
-       return redirect()->route('Turno.index');
+        $turnos = Turnos::findorFail($id);
+        $turnos->update($request->all());
+        return redirect()->route('Turnos.index');
     }
 
     /**
@@ -79,6 +100,6 @@ class TurnosController extends Controller
     {
         $turnos = Turnos::findorFail($id);
         $turnos->delete();
-        return redirect()->route('Turno.index');   
+        return redirect()->route('Turnos.index')->with('success', 'Turno Eliminado correctamente');
     }
 }

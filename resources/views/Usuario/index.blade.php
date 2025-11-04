@@ -2,7 +2,7 @@
 
 @section('title', 'Administrar Usuarios')
 
-@section('titleContent')
+@section('content_header')
     <div class="bg-white shadow-sm">
         <div class="container d-flex justify-content-between align-items-center py-3">
             <!-- Logo y título -->
@@ -83,11 +83,25 @@
                                    style="background-color:green; color:white; border-radius:6px;">
                                     <i class="bi bi-pencil-square"></i> Editar
                                 </a>
+
+                                   @if(session('success'))
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: '¡Éxito!',
+                                            text: "{{ session('success') }}",
+                                            confirmButtonText: 'Aceptar',
+                                            timer: 3000
+                                        });
+                                    });
+                                </script>
+                                @endif
                                 <!-- Botón Eliminar (ROJO) -->
                                 <form action="{{ route('usuario.destroy', $usuario->id) }}" method="post">
                                     @csrf
                                     <button type="submit"
-                                            class="btn btn-sm fw-bold px-3 shadow-sm"
+                                            class="btn btn-sm fw-bold px-3 shadow-sm" onclick="confirmarEliminacion(event)"
                                             style="background-color:#dc3545; color:white; border-radius:6px;">
                                         <i class="bi bi-trash-fill"></i> Eliminar
                                     </button>
@@ -102,4 +116,26 @@
     </div>
 
 </div>
+
+<script>
+        function confirmarEliminacion(event) {
+            event.preventDefault();
+            const form = event.target.closest('form');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+    </script>
 @endsection

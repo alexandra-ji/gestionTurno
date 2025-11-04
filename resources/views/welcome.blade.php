@@ -147,4 +147,22 @@
 
 
 
+<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="font-size: 0.9rem;">
+        {{-- Imagen superior --}}
+        <img src="{{ asset('') }}" alt="Imagen de Turnos de Atención" class="card-img-top" style="height: 150px; object-fit: cover;">
+
+        <div class="card-body d-flex flex-column align-items-center text-center p-3">
+            <h6 class="card-title fw-bold mt-2 mb-2">GenerarTurno</h6>
+            <p class="card-text text-muted mb-3" style="font-size: 0.85rem;">
+            </p>
+            <a href="{{route('turno.form')}}" class="btn btn-sm btn-outline-success w-100 mt-auto">
+                ir 
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
 @endsection

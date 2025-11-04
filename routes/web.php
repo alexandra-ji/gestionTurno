@@ -90,4 +90,8 @@ Route::post('/Historial/update/{id}',[HistorialServicioController::class,'update
 Route::get('/Historial/edit/{id}',[HistorialServicioController::class,'edit'])->name('Historial.edit');
 Route::post('/Historial/destroy/{id}',[HistorialServicioController::class,'destroy'])->name('Historial.destroy');
 
+use App\Http\Controllers\TurnoController;
+
+Route::get('/generar-turno', [TurnoController::class, 'mostrarFormulario'])->name('turno.form');
+Route::post('/generar-turno', [TurnoController::class, 'generar'])->name('turno.generar');
 

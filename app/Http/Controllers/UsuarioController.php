@@ -33,7 +33,7 @@ class UsuarioController extends Controller
         Usuario::create(
              request()->all());
 
-             return redirect()->route('usuario.index');
+             return redirect()->route('usuario.index')->with('success', 'Usuario creado correctamente');;
     }
 
     /**
@@ -72,7 +72,7 @@ class UsuarioController extends Controller
          $usuarios = Usuario::findorFail($id);
         $usuarios->delete();
 
-        return redirect()->route('usuario.index');
+        return redirect()->route('usuario.index')->with('success', 'Usuario Eliminado  correctamente');;
         
     }
 }

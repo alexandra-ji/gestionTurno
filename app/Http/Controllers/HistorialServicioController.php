@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HistorialServicioRequest;
 use App\Models\HistorialServicio;
 use App\Models\Turnos;
 use Illuminate\Http\Request;
@@ -30,12 +31,12 @@ class HistorialServicioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(HistorialServicioRequest $request)
     {
         HistorialServicio::create(
             $request->all()
         );
-        return redirect()->route('Historial.index');
+        return redirect()->route('Historial.index')->with('success', 'Historial Servicio creado correctamente');;
     }
 
     /**
@@ -59,7 +60,7 @@ class HistorialServicioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(HistorialServicioRequest $request, $id)
     {
         $historial = HistorialServicio::findorFail($id);
         $historial ->update($request->all());
@@ -73,7 +74,7 @@ class HistorialServicioController extends Controller
     {
         $historial = HistorialServicio::findorFail($id);
         $historial->delete();
-        return redirect()->route('Historial.index');
+        return redirect()->route('Historial.index')->with('success', 'Historial Servicio Eliminado correctamente');;
 
     }
 }
