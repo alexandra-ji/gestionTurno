@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             ServicioSeeder::class,
             UsuarioSeeder::class,
             EmpleadoDependenciaSeeder::class,
+            TurnosSeeder::class,
+            HistorialServicioSeeder::class,
         ]);
     }
 }

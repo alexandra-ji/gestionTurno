@@ -27,18 +27,17 @@
         </div>
 
         {{-- Formulario --}}
-        <form action="{{ route('Turno.update', $turnos->id) }}" method="POST">
+        <form action="{{route('Turno.update', $turnos->id) }}" method="POST">
             @csrf
-
-            {{-- Código del Turno --}}
+         {{-- Código del Turno --}}
             <div class="mb-3">
                 <input type="text" name="codigoTurno" class="form-control form-control-sm"
-                       value="{{ $turnos->codigoTurno }}" placeholder="Código del Turno" required>
+                       value="{{ $turnos->codigoTurno }}" placeholder="Código del Turno" >
             </div>
 
             {{-- Estado del Turno --}}
             <div class="mb-3">
-                <select name="estadoTurno" class="form-select form-select-sm" required>
+                <select name="estadoTurno" class="form-select form-select-sm" >
                     <option value="">Seleccione el estado del turno</option>
                     <option value="Pendiente" {{ $turnos->estadoTurno == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                     <option value="En Atención" {{ $turnos->estadoTurno == 'En Atención' ? 'selected' : '' }}>En Atención</option>
@@ -52,29 +51,29 @@
             {{-- Fecha --}}
             <div class="mb-3">
                 <input type="date" name="fecha" class="form-control form-control-sm"
-                       value="{{ $turnos->fecha }}" required>
+                       value="{{ $turnos->fecha }}" >
             </div>
 
             {{-- Hora Inicio --}}
             <div class="mb-3">
                 <input type="time" name="horaInicio" class="form-control form-control-sm"
-                       value="{{ $turnos->horaInicio }}" required>
+                       value="{{ $turnos->horaInicio }}" >
             </div>
 
             {{-- Hora Fin --}}
             <div class="mb-3">
                 <input type="time" name="horaFin" class="form-control form-control-sm"
-                       value="{{ $turnos->horaFin }}" required>
+                       value="{{ $turnos->horaFin }}" >
             </div>
 
             {{-- Usuario --}}
             <div class="mb-3">
                 <label for="idUsuario" class="form-label">Usuario</label>
-                <select name="idUsuario" id="idUsuario" class="form-select form-select-sm" required>
+                <select name="idUsuario" id="idUsuario" class="form-select form-select-sm" >
                     <option value="">Seleccione un usuario</option>
                     @foreach($usuarios as $usuario)
                         <option value="{{ $usuario->id }}" {{ $turnos->idUsuario == $usuario->id ? 'selected' : '' }}>
-                            {{ $usuario->nombre }}
+                            {{ $usuario->numeroDocumento }}
                         </option>
                     @endforeach
                 </select>
@@ -83,7 +82,7 @@
             {{-- Servicio --}}
             <div class="mb-3">
                 <label for="idServicio" class="form-label">Servicio</label>
-                <select name="idServicio" id="idServicio" class="form-select form-select-sm" required>
+                <select name="idServicio" id="idServicio" class="form-select form-select-sm" >
                     <option value="">Seleccione un servicio</option>
                     @foreach($servicios as $servicio)
                         <option value="{{ $servicio->id }}" {{ $turnos->idServicio == $servicio->id ? 'selected' : '' }}>
@@ -96,7 +95,7 @@
             {{-- Empleado --}}
             <div class="mb-3">
                 <label for="idEmpleado" class="form-label">Empleado</label>
-                <select name="idEmpleado" id="idEmpleado" class="form-select form-select-sm" required>
+                <select name="idEmpleado" id="idEmpleado" class="form-select form-select-sm" >
                     <option value="">Seleccione un empleado</option>
                     @foreach($empleados as $empleado)
                         <option value="{{ $empleado->id }}" {{ $turnos->idEmpleado == $empleado->id ? 'selected' : '' }}>

@@ -77,7 +77,7 @@ class UsuarioSeeder extends Seeder
         ]);
 
         Usuario::create([
-            'tipoDocumento'   => 'Cedula De Extranjeria',
+            'tipoDocumento'   => 'Tarjeta De Identidad',
             'numeroDocumento' => '2003004001',
             'nombre'          => 'José Martínez',
             'correo'          => 'jose.martinez@example.com',
@@ -85,8 +85,8 @@ class UsuarioSeeder extends Seeder
         ]);
 
         Usuario::create([
-            'tipoDocumento'   => 'Permiso Por Proteccion Temporal',
-            'numeroDocumento' => 'PTP123456',
+            'tipoDocumento'   => 'Cedula De Ciudadania',
+            'numeroDocumento' => '123456',
             'nombre'          => 'Paula Herrera',
             'correo'          => 'paula.herrera@example.com',
             'telefono'        => '3090123456',

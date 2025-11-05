@@ -7,9 +7,9 @@ use App\Http\Controllers\HistorialServicioController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Servicio;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TurnoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -90,7 +90,7 @@ Route::post('/Historial/update/{id}',[HistorialServicioController::class,'update
 Route::get('/Historial/edit/{id}',[HistorialServicioController::class,'edit'])->name('Historial.edit');
 Route::post('/Historial/destroy/{id}',[HistorialServicioController::class,'destroy'])->name('Historial.destroy');
 
-use App\Http\Controllers\TurnoController;
+
 
 Route::get('/generar-turno', [TurnoController::class, 'mostrarFormulario'])->name('turno.form');
 Route::post('/generar-turno', [TurnoController::class, 'generar'])->name('turno.generar');

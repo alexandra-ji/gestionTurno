@@ -15,7 +15,7 @@ class TurnosSeeder extends Seeder
     {
          
         Turnos::create([
-            'codigoTurno' => 'T0001',
+            'codigoTurno' => 'T001',
             'estadoTurno' => 'Pendiente',
             'fecha'      => '2025-10-25',
             'horaInicio' => '08:00:00',
@@ -26,7 +26,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0002',
+            'codigoTurno' => 'T002',
             'estadoTurno' => 'En Atención',
             'fecha'      => '2025-10-25',
             'horaInicio' => '09:00:00',
@@ -37,7 +37,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0003',
+            'codigoTurno' => 'T003',
             'estadoTurno' => 'Atendido',
             'fecha'      => '2025-10-24',
             'horaInicio' => '10:00:00',
@@ -48,7 +48,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0004',
+            'codigoTurno' => 'T004',
             'estadoTurno' => 'Cancelado',
             'fecha'      => '2025-10-23',
             'horaInicio' => '11:00:00',
@@ -59,7 +59,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0005',
+            'codigoTurno' => 'T005',
             'estadoTurno' => 'Ausente',
             'fecha'      => '2025-10-22',
             'horaInicio' => '12:00:00',
@@ -70,7 +70,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0006',
+            'codigoTurno' => 'T006',
             'estadoTurno' => 'Reasignado',
             'fecha'      => '2025-10-21',
             'horaInicio' => '13:00:00',
@@ -81,7 +81,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0007',
+            'codigoTurno' => 'T007',
             'estadoTurno' => 'Pendiente',
             'fecha'      => '2025-10-26',
             'horaInicio' => '14:00:00',
@@ -92,7 +92,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0008',
+            'codigoTurno' => 'T008',
             'estadoTurno' => 'En Atención',
             'fecha'      => '2025-10-26',
             'horaInicio' => '15:00:00',
@@ -103,7 +103,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0009',
+            'codigoTurno' => 'T009',
             'estadoTurno' => 'Atendido',
             'fecha'      => '2025-10-20',
             'horaInicio' => '16:00:00',
@@ -114,7 +114,7 @@ class TurnosSeeder extends Seeder
         ]);
 
         Turnos::create([
-            'codigoTurno' => 'T0010',
+            'codigoTurno' => 'T010',
             'estadoTurno' => 'Cancelado',
             'fecha'      => '2025-10-19',
             'horaInicio' => '17:00:00',

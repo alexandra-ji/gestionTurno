@@ -6,11 +6,10 @@
 
     {{-- Mostrar el turno generado --}}
     @isset($numeroTurno)
-        <div class="alert alert-success text-center">
-            <h4>Turno generado exitosamente</h4>
+        <div class="alert text-center" style="background-color: white; border: 1px solid #ddd;">
             <p><strong>Número de Documento:</strong> {{ $documento }}</p>
             <p><strong>Dependencia:</strong> {{ $servicio }}</p>
-            <h3 class="mt-3">🔢 Turno N° <span class="text-primary">{{ $numeroTurno }}</span></h3>
+            <h3 class="mt-3">Turno N° <span class="text-primary">{{ $numeroTurno }}</span></h3>
         </div>
     @endisset
 

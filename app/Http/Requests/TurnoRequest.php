@@ -23,7 +23,7 @@ class TurnoRequest extends FormRequest
     {
         return [
 
-             'codigoTurno' => 'required|string|max:50',
+            'codigoTurno' => 'required|string|max:50',
             'estadoTurno' => 'required|in:Pendiente,En Atención,Atendido,Cancelado,Ausente,Reasignado',
             'fecha' => 'required|date',
             'horaInicio' => 'required|date_format:H:i',

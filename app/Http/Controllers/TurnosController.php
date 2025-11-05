@@ -24,44 +24,48 @@ class TurnosController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        $turnos = Turnos::all();
-        $usuarios = Usuario::all();
-        $servicios = Servicio::all();
-        $empleados = Empleado::all();
-        return view('Turnos.create', compact('turnos','usuarios', 'servicios', 'empleados'));
+{
+   {
+    // Obtener el último turno ordenado por ID de forma descendente (el más reciente primero)
+    $ultimoTurno = Turnos::orderBy('id', 'desc')->first();
+
+    if ($ultimoTurno) {
+        // Extraer solo la parte numérica del código, por ejemplo de "T010" obtiene "10"
+        $ultimoNumero = (int) substr($ultimoTurno->codigoTurno, 1);
+
+        // Incrementar el número para generar el siguiente código
+        $nuevoNumero = $ultimoNumero + 1;
+    } else {
+        // Si no hay registros aún, comenzamos desde 1
+        $nuevoNumero = 1;
     }
+
+    // Generar el nuevo código con formato (T + número con ceros a la izquierda)
+    // Ejemplo: T001, T002, T003, etc.
+    $codigoTurno = 'T' . str_pad($nuevoNumero, 3, '0', STR_PAD_LEFT);
+
+    // Obtener los datos necesarios para los selects del formulario
+    $usuarios = Usuario::all();
+    $servicios = Servicio::all();
+    $empleados = Empleado::all();
+
+    // Enviar todas las variables a la vista
+    return view('Turnos.create', compact('usuarios', 'servicios', 'empleados', 'codigoTurno'));
+}
+}
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TurnoRequest $request)
-{
-    // Buscar el último turno creado para generar el siguiente número
-    $ultimoTurno = Turnos::latest('id')->first();
-    $numero = $ultimoTurno ? $ultimoTurno->id + 1 : 1;
+    public function store(Request $request)
 
-    // Generar el código con el formato T0001, T0002, T0003...
-    $codigoTurno = 'T' . str_pad($numero, 4, '0', STR_PAD_LEFT);
-
-    // Crear el nuevo turno incluyendo el código generado
-    $turno = Turnos::create([
-        'codigoTurno' => $codigoTurno,
-        'estadoTurno' => $request->estadoTurno,
-        'fecha' => now()->toDateString(),
-        'horaInicio' => $request->horaInicio,
-        'horaFin' => $request->horaFin,
-        'idUsuario' => $request->idUsuario,
-        'idServicio' => $request->idServicio,
-        'idEmpleado' => $request->idEmpleado,
-    ]);
-
-    // Redirigir mostrando mensaje y código generado
-    return redirect()->route('Turno.index')
-        ->with('success', 'Turno creado correctamente. Código: ' . $turno->codigoTurno);
-}
-
-
+    {
+        Turnos::create(
+            $request->all()
+        );
+        return redirect()->route('Turno.index')->with('success', 'Turno creado correctamente');;
+    }
 
     /**
      * Display the specified resource.
@@ -80,17 +84,17 @@ class TurnosController extends Controller
         $empleados = Empleado::all();
         $usuarios = Usuario::all();
         $servicios = Servicio::all();
-        return view('Turnos.edit', compact('turnos' , 'empleados','usuarios','servicios'));
+        return view('Turnos.edit', compact('turnos', 'empleados', 'usuarios', 'servicios'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(TurnoRequest $request, $id)
+    public function update( Request $request, $id)
     {
-        $turnos = Turnos::findorFail($id);
+        $turnos = Turnos::findOrFail($id);
         $turnos->update($request->all());
-        return redirect()->route('Turnos.index');
+        return redirect()->route('Turno.index')->with('success', 'Turno actualizado correctamente');
     }
 
     /**
@@ -100,6 +104,6 @@ class TurnosController extends Controller
     {
         $turnos = Turnos::findorFail($id);
         $turnos->delete();
-        return redirect()->route('Turnos.index')->with('success', 'Turno Eliminado correctamente');
+        return redirect()->route('Turno.index')->with('success', 'turno  Eliminado correctamente');
     }
 }
