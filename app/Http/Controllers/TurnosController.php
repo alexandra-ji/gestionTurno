@@ -41,7 +41,6 @@ class TurnosController extends Controller
     }
 
     // Generar el nuevo código con formato (T + número con ceros a la izquierda)
-    // Ejemplo: T001, T002, T003, etc.
     $codigoTurno = 'T' . str_pad($nuevoNumero, 3, '0', STR_PAD_LEFT);
 
     // Obtener los datos necesarios para los selects del formulario

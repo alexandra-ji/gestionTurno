@@ -16,7 +16,14 @@ class Dependencia extends Model
         return $this->hasMany(Servicio::class,'idDependencia');
     }
 
-       public function EmpleadoDependencia(){
-        return $this->hasMany(EmpleadoDependencia::class,'idDependencia');
-    }
+      public function empleados()
+{
+    return $this->belongsToMany(
+        Empleado::class,
+        'empleado_dependencias',
+        'idDependencia',
+        'idEmpleado'
+    );
+}
+
 }

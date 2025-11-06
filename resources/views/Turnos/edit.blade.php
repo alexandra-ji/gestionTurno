@@ -53,7 +53,7 @@
                 <input type="date" name="fecha" class="form-control form-control-sm"
                        value="{{ $turnos->fecha }}" >
             </div>
-
+            
             {{-- Hora Inicio --}}
             <div class="mb-3">
                 <input type="time" name="horaInicio" class="form-control form-control-sm"

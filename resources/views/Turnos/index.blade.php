@@ -79,7 +79,7 @@
                             <td>{{ $turno->fecha}}</td>
                             <td>{{ $turno->horaInicio}}</td>
                             <td>{{ $turno->horaFin}}</td>
-                            <td>{{$turno->usuario->nombre}}</td>
+                            <td>{{$turno->usuario->numeroDocumento}}</td>
                             <td>{{$turno->servicio->nombreServicio}}</td>
                             <td>{{$turno->empleado->nombreCompleto}}</td>
                             

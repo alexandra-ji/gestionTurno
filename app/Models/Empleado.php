@@ -16,14 +16,19 @@ class Empleado extends Model
     ];
 
 
-    public function EmpleadoDependencias()
-    {
-        return $this->hasMany(EmpleadoDependencia::class, 'idEmpleado');
-    }
-
+   public function dependencias()
+{
+    return $this->belongsToMany(
+        Dependencia::class,
+        'empleado_dependencias',
+        'idEmpleado',
+        'idDependencia'
+    );
+}
     public function Turnos()
     {
-        return $this->hasMany(Turnos::class, 'idTurno');
+        return $this->hasMany(Turnos::class, 'idEmpleado');
+
     }
 
 

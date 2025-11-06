@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dependencia;
+use App\Models\Turnos;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 
 class TurnoController extends Controller
 {
@@ -13,53 +16,55 @@ class TurnoController extends Controller
         return view('GenerarTurno', compact('dependencias'));
     }
 
-   public function generar(Request $request)
-{
-    // Validar los campos del formulario
-    $request->validate([
-        'documento' => 'required|numeric',
-        'dependencia' => 'required|exists:dependencias,id',
-    ]);
+    public function generar(Request $request)
+    {
+        $request->validate([
+            'documento' => 'required|numeric',
+            'dependencia' => 'required|exists:dependencias,id',
+        ]);
 
-    // Obtener la dependencia seleccionada
-    $dependencia = \App\Models\Dependencia::find($request->dependencia);
+    
+        $dependencia = Dependencia::find($request->dependencia);
 
-    // Obtener la letra inicial de la dependencia
-    $letra = strtoupper(substr($dependencia->nombre, 0, 1));
+       
+        $letra = strtoupper(substr($dependencia->nombre, 0, 1));
 
-    // Buscar el último turno de esa dependencia
-    $ultimoTurno = \App\Models\Turnos::where('idServicio', $dependencia->id)
-                    ->orderBy('id', 'desc')
-                    ->first();
+        $ultimoTurno = Turnos::where('idServicio', $dependencia->id)
+                            ->orderBy('id', 'desc')
+                            ->first();
 
-    if ($ultimoTurno) {
-        $ultimoNumero = (int) substr($ultimoTurno->codigoTurno, 1);
-        $nuevoNumero = $ultimoNumero + 1;
-    } else {
-        $nuevoNumero = 1;
+        $nuevoNumero = $ultimoTurno
+            ? (int) substr($ultimoTurno->codigoTurno, 1) + 1
+            : 1;
+
+        $codigoTurno = $letra . str_pad($nuevoNumero, 3, '0', STR_PAD_LEFT);
+
+
+        $usuario = Usuario::where('numeroDocumento', $request->documento)->first();
+
+        if (!$usuario) {
+            return back()->withErrors(['documento' => 'El número de documento no está registrado.']);
+        }
+
+       
+        $empleado = $dependencia->empleados()->inRandomOrder()->first();
+
+        if (!$empleado) {
+            return back()->withErrors(['dependencia' => 'No hay empleados asignados a esta dependencia.']);
+        }
+
+        Turnos::create([
+            'codigoTurno' => $codigoTurno,
+            'estadoTurno' => 'Pendiente',
+            'fecha' => now()->toDateString(),
+            'horaInicio' => now()->format('H:i:s'),
+            'idUsuario' => $usuario->id,
+            'idServicio' => $dependencia->id,
+            'idEmpleado' => $empleado->id,
+        ]);
+
+        return redirect()
+            ->route('Turno.index')
+            ->with('success', '¡Turno generado exitosamente!');
     }
-
-    // Generar nuevo código
-    $numeroTurno = $letra . str_pad($nuevoNumero, 3, '0', STR_PAD_LEFT);
-
-    // Crear el turno en la base de datos
-    $turno = \App\Models\Turnos::create([
-        'codigoTurno' => $numeroTurno,
-        'estadoTurno' => 'Pendiente', // puedes cambiarlo según tu lógica
-        'fecha' => now()->toDateString(),
-        'horaInicio' => now()->format('H:i:s'),
-        'idUsuario' => null, // o asigna si hay usuario logueado
-        'idServicio' => $dependencia->id,
-        'idEmpleado' => null, // o asigna si corresponde
-    ]);
-
-    // Devolver la vista con el ticket generado
-    return view('GenerarTurno', [
-        'numeroTurno' => $turno->codigoTurno,
-        'documento' => $request->documento,
-        'servicio' => $dependencia->nombre,
-        'dependencias' => \App\Models\Dependencia::all(),
-    ]);
-}
-
 }
