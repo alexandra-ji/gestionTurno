@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('codigoTurno');
             $table->string('estadoTurno');
-            $table->date('fecha')->default(DB::raw('CURRENT_DATE'));
-            $table->time('horaInicio');
+            $table->dateTime('fecha')->default(DB::raw('CURRENT_DATE'));
+            $table->time('horaInicio')->nullable();
             $table->time('horaFin')->nullable();
             $table->unsignedBigInteger('idUsuario');
             $table->foreign('idUsuario')->references('id')->on('usuarios');

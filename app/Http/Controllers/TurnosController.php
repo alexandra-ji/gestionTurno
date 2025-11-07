@@ -16,7 +16,12 @@ class TurnosController extends Controller
      */
     public function index()
     {
-        $turnos = Turnos::all();
+        // Solo mostrar turnos pendientes o reasignados por orden de llegada
+        $turnos = Turnos::whereIn('estadoTurno', ['Pendiente', 'Reasignado'])
+                        ->orderBy('fecha', 'asc')
+                        ->orderBy('horaInicio', 'asc')
+                        ->get();
+
         return view('Turnos.index', compact('turnos'));
     }
 
@@ -24,54 +29,36 @@ class TurnosController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-{
-   {
-    // Obtener el último turno ordenado por ID de forma descendente (el más reciente primero)
-    $ultimoTurno = Turnos::orderBy('id', 'desc')->first();
+    {
+        // Obtener el último turno ordenado por ID de forma descendente (el más reciente primero)
+        $ultimoTurno = Turnos::orderBy('id', 'desc')->first();
 
-    if ($ultimoTurno) {
-        // Extraer solo la parte numérica del código, por ejemplo de "T010" obtiene "10"
-        $ultimoNumero = (int) substr($ultimoTurno->codigoTurno, 1);
+        if ($ultimoTurno) {
+            // Extraer la parte numérica del código, ej. "T010" → 10
+            $ultimoNumero = (int) substr($ultimoTurno->codigoTurno, 1);
+            $nuevoNumero = $ultimoNumero + 1;
+        } else {
+            $nuevoNumero = 1;
+        }
 
-        // Incrementar el número para generar el siguiente código
-        $nuevoNumero = $ultimoNumero + 1;
-    } else {
-        // Si no hay registros aún, comenzamos desde 1
-        $nuevoNumero = 1;
+        // Generar nuevo código (T + número con ceros)
+        $codigoTurno = 'T' . str_pad($nuevoNumero, 3, '0', STR_PAD_LEFT);
+
+        // Obtener los datos para los selects del formulario
+        $usuarios = Usuario::all();
+        $servicios = Servicio::all();
+        $empleados = Empleado::all();
+
+        return view('Turnos.create', compact('usuarios', 'servicios', 'empleados', 'codigoTurno'));
     }
-
-    // Generar el nuevo código con formato (T + número con ceros a la izquierda)
-    $codigoTurno = 'T' . str_pad($nuevoNumero, 3, '0', STR_PAD_LEFT);
-
-    // Obtener los datos necesarios para los selects del formulario
-    $usuarios = Usuario::all();
-    $servicios = Servicio::all();
-    $empleados = Empleado::all();
-
-    // Enviar todas las variables a la vista
-    return view('Turnos.create', compact('usuarios', 'servicios', 'empleados', 'codigoTurno'));
-}
-}
-
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-
     {
-        Turnos::create(
-            $request->all()
-        );
-        return redirect()->route('Turno.index')->with('success', 'Turno creado correctamente');;
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Turnos $turnos)
-    {
-        //
+        Turnos::create($request->all());
+        return redirect()->route('Turno.index')->with('success', 'Turno creado correctamente');
     }
 
     /**
@@ -79,7 +66,7 @@ class TurnosController extends Controller
      */
     public function edit($id)
     {
-        $turnos = Turnos::findorFail($id);
+        $turnos = Turnos::findOrFail($id);
         $empleados = Empleado::all();
         $usuarios = Usuario::all();
         $servicios = Servicio::all();
@@ -89,7 +76,7 @@ class TurnosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update( Request $request, $id)
+    public function update(Request $request, $id)
     {
         $turnos = Turnos::findOrFail($id);
         $turnos->update($request->all());
@@ -101,8 +88,47 @@ class TurnosController extends Controller
      */
     public function destroy($id)
     {
-        $turnos = Turnos::findorFail($id);
+        $turnos = Turnos::findOrFail($id);
         $turnos->delete();
-        return redirect()->route('Turno.index')->with('success', 'turno  Eliminado correctamente');
+        return redirect()->route('Turno.index')->with('success', 'Turno eliminado correctamente');
+    }
+
+    /**
+     * Métodos personalizados para cambiar el estado del turno
+     */
+    public function llamar($id)
+    {
+        $turno = Turnos::findOrFail($id);
+        $turno->estadoTurno = 'Llamado';
+        $turno->save();
+
+        return redirect()->route('Turno.index')->with('success', 'Turno llamado correctamente.');
+    }
+
+    public function atender($id)
+    {
+        $turno = Turnos::findOrFail($id);
+        $turno->estadoTurno = 'En Atención';
+        $turno->save();
+
+        return redirect()->route('Turno.index')->with('success', 'Turno en atención.');
+    }
+
+    public function cancelar($id)
+    {
+        $turno = Turnos::findOrFail($id);
+        $turno->estadoTurno = 'Cancelado';
+        $turno->save();
+
+        return redirect()->route('Turno.index')->with('success', 'Turno cancelado.');
+    }
+
+    public function reasignar($id)
+    {
+        $turno = Turnos::findOrFail($id);
+        $turno->estadoTurno = 'Reasignado';
+        $turno->save();
+
+        return redirect()->route('Turno.index')->with('success', 'Turno reasignado.');
     }
 }

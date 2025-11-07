@@ -59,7 +59,7 @@
                 {{-- Fecha --}}
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" class="form-control @error('fecha') is-invalid @enderror"
+                    <input type="datetime-local" class="form-control @error('fecha') is-invalid @enderror"
                         id="fecha" name="fecha">
                     @error('fecha')
                     <div class="invalid-feedback">{{ $message }}</div>

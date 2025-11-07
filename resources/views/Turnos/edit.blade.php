@@ -50,7 +50,7 @@
 
             {{-- Fecha --}}
             <div class="mb-3">
-                <input type="date" name="fecha" class="form-control form-control-sm"
+                <input type="datetime-local" name="fecha" class="form-control form-control-sm"
                        value="{{ $turnos->fecha }}" >
             </div>
             

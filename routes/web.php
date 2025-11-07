@@ -80,8 +80,16 @@ Route::post('/Turnos/update/{id}',[TurnosController::class,'update'])->name('Tur
 Route::get('/Turnos/edit/{id}',[TurnosController::class,'edit'])->name('Turno.edit');
 Route::post('/Turnos/destroy/{id}',[TurnosController::class,'destroy'])->name('Turno.destroy');
 
-//rutas para Historial de Servicios
+//rutas para las acciones
 
+Route::get('/turnos/{id}/llamar',[TurnosController::class,'llamar'])->name('turnos.llamar');
+Route::get('/turnos/{id}/Atender',[TurnosController::class,'Atender'])->name('turnos.Atender');
+Route::get('/turnos/{id}/Cancelar',[TurnosController::class,'Cancelar'])->name('turnos.Cancelar');
+Route::get('/turnos/{id}/Reasignar',[TurnosController::class,'Reasignar'])->name('turnos.Reasignar');
+
+
+
+//rutas para Historial de Servicios
 
 Route::get('/Historial/index',[HistorialServicioController::class,'index'])->name('Historial.index');
 Route::get('/Historial/create',[HistorialServicioController::class,'create'])->name('Historial.create');
