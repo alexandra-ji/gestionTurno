@@ -68,7 +68,7 @@ class TurnoController extends Controller
         ]);
 
         return redirect()
-            ->route('Turno.index')
+            ->route('Turno.listar')
             ->with('success', '¡Turno generado exitosamente para el usuario ' . $usuario->nombre. '!');
     }
 }
