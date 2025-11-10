@@ -15,7 +15,7 @@
 
         <div class="d-flex flex-column gap-3">
             <!-- Botón Atender -->
-            <form action="{{ route('Turno.atender', $turno->id) }}" method="POST">
+            <form action="{{ route('Turno.mostrarAtencion', $turno->id) }}" method="POST">
                 @csrf
                 <button type="submit"
                     class="btn btn-success w-100 fw-bold py-2 shadow-sm">
