@@ -29,17 +29,6 @@
 {{-- TÍTULO DE LA SECCIÓN --}}
 <h3 class="text-center my-4 fw-bold" style="color:#333;">Administrar Turnos</h3>
 
-<div class="dropdown text-center mb-4">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        opciones
-    </button>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="route('turnos.llamar',$turnos->id)">Llamar</a></li>
-        <li><a class="dropdown-item" href="route('turnos.Atender',$turnos->id)">Atender</a></li>
-        <li><a class="dropdown-item" href="route('turnos.Cancelar',$turnos->id)">Cancelar</a></li>
-        <li><a class="dropdown-item" href="route('turnos.Reasignar',$turnos->id)">Reasignar</a></li>
-    </ul>
-</div>
 @endsection
 
 @section('Content')
@@ -125,6 +114,8 @@
                                         <i class="bi bi-trash-fill"></i> Eliminar
                                     </button>
                                 </form>
+
+
                             </td>
                         </tr>
                         @endforeach

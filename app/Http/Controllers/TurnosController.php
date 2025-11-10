@@ -15,14 +15,12 @@ class TurnosController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        // Solo mostrar turnos pendientes o reasignados por orden de llegada
-        $turnos = Turnos::whereIn('estadoTurno', ['Pendiente', 'Reasignado'])
-                        ->orderBy('fecha', 'asc')
-                        ->orderBy('horaInicio', 'asc')
-                        ->get();
+    { {
+            // Trae todos los turnos, sin importar el estado
+            $turnos = Turnos::with(['usuario', 'servicio', 'empleado'])->get();
 
-        return view('Turnos.index', compact('turnos'));
+            return view('Turnos.index', compact('turnos'));
+        }
     }
 
     /**
@@ -93,34 +91,25 @@ class TurnosController extends Controller
         return redirect()->route('Turno.index')->with('success', 'Turno eliminado correctamente');
     }
 
-    /**
-     * Métodos personalizados para cambiar el estado del turno
-     */
+
     public function llamar($id)
     {
         $turno = Turnos::findOrFail($id);
-        $turno->estadoTurno = 'Llamado';
-        $turno->save();
-
-        return redirect()->route('Turno.index')->with('success', 'Turno llamado correctamente.');
+        return view('Turnos.llamar', compact('turno'));
     }
 
     public function atender($id)
     {
-        $turno = Turnos::findOrFail($id);
-        $turno->estadoTurno = 'En Atención';
+        // Buscar el turno en la base de datos
+        $turno = \App\Models\Turnos::findOrFail($id);
+
+        // Actualizar estado y hora de inicio
+        $turno->estadoTurno = 'En atención';
+        $turno->horaInicio = now()->format('H:i:s');
+        // Guardar los cambios
         $turno->save();
-
-        return redirect()->route('Turno.index')->with('success', 'Turno en atención.');
-    }
-
-    public function cancelar($id)
-    {
-        $turno = Turnos::findOrFail($id);
-        $turno->estadoTurno = 'Cancelado';
-        $turno->save();
-
-        return redirect()->route('Turno.index')->with('success', 'Turno cancelado.');
+        // Redirigir con mensaje de éxito
+        return redirect()->route('Turno.index')->with('success', '✅ El turno ha sido atendido. Hora de inicio registrada correctamente.');
     }
 
     public function reasignar($id)
@@ -129,6 +118,28 @@ class TurnosController extends Controller
         $turno->estadoTurno = 'Reasignado';
         $turno->save();
 
-        return redirect()->route('Turno.index')->with('success', 'Turno reasignado.');
+        return redirect()->route('Turno.index')->with('success', 'Turno reasignado correctamente.');
+    }
+
+    public function cancelar($id)
+    {
+        $turno = Turnos::findOrFail($id);
+        $turno->estadoTurno = 'Cancelado';
+        $turno->horaFin = now()->format('H:i:s');
+        $turno->save();
+
+        return redirect()->route('Turno.index')->with('success', 'Turno cancelado correctamente.');
+    }
+
+    public function listar()
+
+    {
+        $turnos = Turnos::with(['usuario', 'servicio', 'empleado'])
+            ->whereIn('estadoTurno', ['Pendiente', 'Reasignado'])
+            ->orderBy('fecha', 'asc')
+            ->orderBy('horaInicio', 'asc')
+            ->get();
+
+        return view('Turnos.ListarTurnos', compact('turnos'));
     }
 }

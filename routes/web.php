@@ -79,13 +79,8 @@ Route::post('/Turnos/store',[TurnosController::class,'store'])->name('Turno.stor
 Route::post('/Turnos/update/{id}',[TurnosController::class,'update'])->name('Turno.update');
 Route::get('/Turnos/edit/{id}',[TurnosController::class,'edit'])->name('Turno.edit');
 Route::post('/Turnos/destroy/{id}',[TurnosController::class,'destroy'])->name('Turno.destroy');
-
-//rutas para las acciones
-
-Route::get('/turnos/{id}/llamar',[TurnosController::class,'llamar'])->name('turnos.llamar');
-Route::get('/turnos/{id}/Atender',[TurnosController::class,'Atender'])->name('turnos.Atender');
-Route::get('/turnos/{id}/Cancelar',[TurnosController::class,'Cancelar'])->name('turnos.Cancelar');
-Route::get('/turnos/{id}/Reasignar',[TurnosController::class,'Reasignar'])->name('turnos.Reasignar');
+Route::post('/turnos/{id}/llamar', [TurnosController::class, 'llamar'])->name('turnos.llamar');
+Route::get('/turnos/llamar/{id}', [TurnosController::class, 'llamar'])->name('Turno.llamar');
 
 
 
@@ -102,4 +97,12 @@ Route::post('/Historial/destroy/{id}',[HistorialServicioController::class,'destr
 
 Route::get('/generar-turno', [TurnoController::class, 'mostrarFormulario'])->name('turno.form');
 Route::post('/generar-turno', [TurnoController::class, 'generar'])->name('turno.generar');
+
+
+Route::post('/turnos/atender/{id}', [TurnosController::class, 'atender'])->name('Turno.atender');
+Route::post('/turnos/reasignar/{id}', [TurnosController::class, 'reasignar'])->name('Turno.reasignar');
+Route::post('/turnos/cancelar/{id}', [TurnosController::class, 'cancelar'])->name('Turno.cancelar');
+
+Route::get('/turnos/listar', [TurnosController::class, 'listar'])->name('Turno.listar');
+
 
