@@ -357,7 +357,23 @@ return [
         'icon' => 'fas fa-history',
     ],
 
-   
+   [
+    'text' => 'Gestión de Turnos',
+    'icon' => 'fas fa-ticket-alt',
+    'submenu' => [
+        [
+            'text' => 'Generar Turno',
+            'route' => 'turno.form',
+            'icon' => 'fas fa-plus-circle',
+        ],
+        [
+            'text' => 'Listar Turnos',
+            'route' => 'Turno.listar',
+            'icon' => 'fas fa-list',
+        ],
+    ],
+],
+
 ],
 
 

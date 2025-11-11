@@ -142,20 +142,26 @@
 </div>
 
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="font-size: 0.9rem;">
-        {{-- Imagen superior --}}
-      <div class="card-body d-flex flex-column align-items-center text-center p-3">
-            <h6 class="card-title fw-bold mt-2 mb-2">GenerarTurno</h6>
-            <p class="card-text text-muted mb-3" style="font-size: 0.85rem;">
-            </p>
-            <a href="{{route('turno.form')}}" class="btn btn-sm btn-outline-success w-100 mt-auto">
-                ir 
-            </a>
-        </div>
+  <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden text-center" style="font-size: 0.9rem;">
+    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+      
+      <div class="mb-3">
+        <i class="bi bi-ticket-detailed" style="font-size: 2.5rem; color: #198754;"></i>
+      </div>
+      <h5 class="card-title fw-bold text-success">Generar Turno</h5>
+      <p class="card-text text-muted">
+        Cree un nuevo turno para atención rápida.
+      </p>
+      <a href="{{ route('turno.form') }}" class="btn btn-outline-success btn-sm px-4 mt-2">Ir</a>
+    
     </div>
+  </div>
 </div>
 
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+
+
+<div class="col-12 col-sm-3 col-md-4 col-lg-3  mt-4">
     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="font-size: 0.9rem;">
         {{-- Imagen superior --}}
       <div class="card-body d-flex flex-column align-items-center text-center p-3">
@@ -168,6 +174,8 @@
             
         </div>
     </div>
+    </div>
 </div>
+
 
 @endsection

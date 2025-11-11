@@ -91,7 +91,7 @@
                                         <a href="{{ route('Turno.llamar', $turno->id) }}"
                                             class="btn btn-sm fw-bold px-3 shadow-sm"
                                             style="background-color:#ffc107; color:#333; border-radius:6px;">
-                                            <i class="bi bi-telephone-fill"></i> Llamar
+                                             Llamar
                                         </a>
                                     </td>
                                 </tr>

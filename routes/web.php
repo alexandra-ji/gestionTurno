@@ -106,3 +106,7 @@ Route::post('/turnos/cancelar/{id}', [TurnosController::class, 'cancelar'])->nam
 Route::get('/turnos/listar', [TurnosController::class, 'listar'])->name('Turno.listar');
 
 
+Route::post('/turnos/mostrarAtencion/{id}', [TurnosController::class, 'mostrarAtencion'])->name('Turno.mostrarAtencion');
+Route::post('/turnos/finalizarAtencion/{id}', [TurnosController::class, 'finalizarAtencion'])->name('Turno.finalizarAtencion');
+
+

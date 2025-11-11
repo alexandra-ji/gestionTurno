@@ -142,4 +142,33 @@ class TurnosController extends Controller
 
         return view('Turnos.ListarTurnos', compact('turnos'));
     }
+
+    public function mostrarAtencion($id)
+{
+    // Carga el turno con relaciones si las tienes (cliente, servicio, etc.)
+$turno = Turnos::with(['usuario', 'Servicio', 'empleado'])->findOrFail($id);
+    // Si no tiene horaInicio, la guardamos al momento de abrir la vista
+    if (!$turno->horaInicio) {
+        $turno->horaInicio = now()->format('H:i:s');
+        $turno->estadoTurno = 'En atención';
+        $turno->save();
+    }
+
+    return view('turnos.AtenderTurno', compact('turno'));
+}
+
+public function finalizarAtencion($id)
+{
+    $turno = Turnos::findOrFail($id);
+
+    // Guardar hora final y estado
+    $turno->horaFin = now()->format('H:i:s');
+    $turno->estadoTurno = 'Atendido';
+    $turno->save();
+
+    return redirect()->route('Turno.index')
+        ->with('success', 'Turno finalizado correctamente.');
+}
+
+
 }
