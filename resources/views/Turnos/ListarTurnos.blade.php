@@ -104,4 +104,47 @@
     </div>
 
 </div>
+
+
+
+
 @endsection
+
+
+
+@section('scripts')
+        <script>
+            // Función para llamar el turno y guardar en localStorage
+            function llamarTurno() {
+                const turnoData = {
+                    codigoTurno: "{{ $turno->codigoTurno }}",
+                    servicio: "{{ $turno->servicio->nombreServicio ?? 'Servicio General' }}",
+                    dependencia: "{{ $turno->servicio->dependencia->nombre ?? 'Dependencia General' }}",
+                    timestamp: new Date().getTime()
+                };
+
+                console.log('Guardando turno en localStorage:', turnoData);
+
+                // Guardar en localStorage para que el tablero lo detecte
+                localStorage.setItem('ultimoTurnoLlamado', JSON.stringify(turnoData));
+
+                // También en sessionStorage por seguridad
+                sessionStorage.setItem('turnoLlamadoReciente', JSON.stringify(turnoData));
+
+                // Mostrar mensaje de confirmación
+                alert('✅ Turno {{ $turno->codigoTurno }} llamado exitosamente!');
+
+                // Redirigir al tablero
+                window.location.href = "{{ route('TableroTurno') }}";
+            }
+
+            // Llamar automáticamente la función cuando se carga la página
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('Página de llamar turno cargada - ejecutando llamado automático');
+                llamarTurno();
+            });
+        </script>
+@endsection
+
+
+

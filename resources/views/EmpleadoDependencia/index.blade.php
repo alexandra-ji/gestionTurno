@@ -3,15 +3,8 @@
 @section('title', 'Administrar Empleado-Dependencia')
 
 @section('content_header')
-    <div class="bg-white shadow-sm">
-        <div class="container d-flex justify-content-between align-items-center py-3">
-            <!-- Logo y título -->
-            <div class="d-flex align-items-center gap-3">
-                <img src="{{ asset('imagenes/logo.jpg') }}" alt="Logo" style="height:60px;">
-                <h2 class="m-0 fw-bold" style="color:#333;">GestionTurnos</h2>
-            </div>
-        </div>
 
+    <div class="bg-white shadow-sm">
         <!-- Barra verde de navegación -->
         <div class="bg-success">
             <div class="container d-flex justify-content-center gap-5 py-2">
@@ -55,16 +48,16 @@
                        style="background-color:white; color:#333;">
                     <thead style="background-color:#a8e6a1; color:#333;">
                         <tr>
-                            <th>ID Empleado</th>
-                            <th>ID Dependencia</th>
+                            <th>Empleado</th>
+                            <th>Dependencia</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($EmpleadoDe as $EmpleadoD)
                         <tr>
-                            <td>{{ $EmpleadoD->idEmpleado }}</td>
-                            <td>{{ $EmpleadoD->idDependencia }}</td>
+                            <td>{{ $EmpleadoD->Empleado->nombreCompleto }}</td>
+                            <td>{{ $EmpleadoD->Dependencia->nombre }}</td>
 
                             <td class="d-flex justify-content-center gap-2">
                                 <!-- Botón Editar -->

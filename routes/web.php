@@ -10,6 +10,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurnoController;
+use App\Models\Turnos;
 
 Route::get('/', function () {
     return view('welcome');
@@ -96,6 +97,7 @@ Route::post('/Historial/destroy/{id}',[HistorialServicioController::class,'destr
 
 
 Route::get('/generar-turno', [TurnoController::class, 'mostrarFormulario'])->name('turno.form');
+
 Route::post('/generar-turno', [TurnoController::class, 'generar'])->name('turno.generar');
 
 
@@ -113,3 +115,39 @@ Route::get('/', function () {return view('filaTurnos');
 
 
 
+Route::get('/tickeTurno/{codigoTurno}', function ($codigoTurno) {
+
+    $turno = Turnos::where('codigoTurno', $codigoTurno)->first();
+
+    return view('Turnos.TicketTurno',compact('turno'));
+}) ->name('TicketTurno');
+
+
+
+
+Route::get('/Tableroturno/', function () {
+    // Turno actual (el primero pendiente)
+    $turno = Turnos::where('estadoTurno', 'Pendiente')
+        ->orderBy('created_at', 'asc')
+        ->with(['servicio.dependencia', 'usuario'])
+        ->first();
+
+    // Todos los turnos en espera (pendientes)
+    $turnosEnEspera = Turnos::where('estadoTurno', 'Pendiente')
+        ->orderBy('created_at', 'asc')
+        ->with(['servicio.dependencia', 'usuario'])
+        ->get();
+
+    // Turnos llamados recientemente (en atención) - CORREGIDO: 'En Atención' con tilde
+    $turnosLlamados = Turnos::where('estadoTurno', 'En atención')
+        ->orderBy('updated_at', 'desc')
+        ->with(['servicio.dependencia', 'usuario'])
+        ->limit(5)
+        ->get();
+
+    return view('Turnos.Tableroturno', compact(
+        'turno',
+        'turnosEnEspera',
+        'turnosLlamados'
+    ));
+})->name('TableroTurno');

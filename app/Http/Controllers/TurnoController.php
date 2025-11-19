@@ -21,17 +21,17 @@ class TurnoController extends Controller
 
         $dependencia = Dependencia::find($request->dependencia);
 
-        
+
         $letra = strtoupper(substr($dependencia->nombre, 0, 1));
         $ultimoTurno = Turnos::where('idServicio', $dependencia->id)
                             ->orderBy('id', 'desc')
                             ->first();
        if ($ultimoTurno) {
-    
+
         $numeroAnterior = (int) substr($ultimoTurno->codigoTurno, 1);
         $nuevoNumero = $numeroAnterior + 1;
         } else {
-        
+
             $nuevoNumero = 1;
         }
 
@@ -40,7 +40,7 @@ class TurnoController extends Controller
         $usuario = Usuario::where('numeroDocumento', $request->documento)->first();
 
         if (!$usuario) {
-            
+
             $usuario = Usuario::create([
                 'nombre' => 'Usuario ' . $request->documento,
                 'numeroDocumento' => $request->documento,
@@ -57,7 +57,7 @@ class TurnoController extends Controller
             return back()->withErrors(['dependencia' => 'No hay empleados asignados a esta dependencia.']);
         }
 
-       
+
         Turnos::create([
             'codigoTurno' => $codigoTurno,
             'estadoTurno' => 'Pendiente',
@@ -67,8 +67,8 @@ class TurnoController extends Controller
             'idEmpleado' => $empleado->id,
         ]);
 
-        return redirect()
-            ->route('Turno.listar')
-            ->with('success', '¡Turno generado exitosamente para el usuario ' . $usuario->nombre. '!');
+
+        return redirect()->route('TicketTurno', ['codigoTurno' => $codigoTurno]);
+
     }
 }

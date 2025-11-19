@@ -107,7 +107,7 @@ class TurnosController extends Controller
         $turno->estadoTurno = 'En atención';
         $turno->horaInicio = now()->format('H:i:s');
         // Guardar los cambios
-        $turno->save();
+        $turno->update();
         // Redirigir con mensaje de éxito
         return redirect()->route('Turno.index')->with('success', '✅ El turno ha sido atendido. Hora de inicio registrada correctamente.');
     }
