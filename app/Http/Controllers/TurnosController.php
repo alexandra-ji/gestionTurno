@@ -128,7 +128,7 @@ class TurnosController extends Controller
         $turno->horaFin = now()->format('H:i:s');
         $turno->save();
 
-        return redirect()->route('Turno.index')->with('success', 'Turno cancelado correctamente.');
+        return redirect()->route('Turno.listar')->with('success', 'Turno cancelado correctamente.');
     }
 
     public function listar()

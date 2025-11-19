@@ -110,10 +110,6 @@ Route::get('/turnos/listar', [TurnosController::class, 'listar'])->name('Turno.l
 
 Route::post('/turnos/mostrarAtencion/{id}', [TurnosController::class, 'mostrarAtencion'])->name('Turno.mostrarAtencion');
 Route::post('/turnos/finalizarAtencion/{id}', [TurnosController::class, 'finalizarAtencion'])->name('Turno.finalizarAtencion');
-Route::get('/', function () {return view('filaTurnos');
-}) ->name('filaTurnos');
-
-
 
 Route::get('/tickeTurno/{codigoTurno}', function ($codigoTurno) {
 
