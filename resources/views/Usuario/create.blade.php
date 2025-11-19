@@ -4,6 +4,7 @@
 
 @section('Content')
 <div class="d-flex justify-content-center align-items-center" style="min-height:100vh; background:#f7f7f7;">
+    
     <div class="p-4 shadow" style="width:420px; background:white; border-radius:8px;">
 
         {{-- Encabezado--}}

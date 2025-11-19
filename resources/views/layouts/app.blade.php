@@ -3,7 +3,7 @@
 @section('title', $title ?? 'Dashboard')
 
 @section('content_header')
-    <h1>@yield('page-title', 'Admin Panel')</h1>
+
 @stop
 
 @section('content')
@@ -57,7 +57,7 @@
     {{-- ✅ Scripts --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    
+
 </body>
 </html>
 @stop

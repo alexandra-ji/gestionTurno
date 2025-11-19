@@ -4,17 +4,6 @@
 
 @section('content_header')
     <div class="bg-white shadow-sm">
-        <div class="container d-flex justify-content-between align-items-center py-3">
-            <!-- Logo y título -->
-            <div class="d-flex align-items-center gap-3">
-                <img src="{{ asset('imagenes/logo.jpg') }}" alt="Logo"
-                     style="height:60px;">
-                <h2 class="m-0 fw-bold" style="color:#333;">GestionTurnos</h2>
-            </div>
-            
-            
-        </div>
-
         <!-- Barra verde de navegación -->
         <div class="bg-success">
             <div class="container d-flex justif y-content-center gap-5 py-2">
