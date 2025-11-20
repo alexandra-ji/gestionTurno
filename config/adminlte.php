@@ -196,12 +196,12 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+   'classes_sidebar' => 'sidebar-dark-success elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-ligth navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Sidebar
@@ -299,82 +299,82 @@ return [
     */
 
     'menu' => [
-    // Navbar items:
-    [
-        'type' => 'navbar-search',
-        'text' => 'search',
-        'topnav_right' => true,
-    ],
-    [
-        'type' => 'fullscreen-widget',
-        'topnav_right' => true,
-    ],
-
-    // Sidebar items:
-
-
-    // 🔧 NUEVA SECCIÓN PERSONALIZADA DEL SISTEMA
-    ['header' => 'Gestión del Sistema'],
-
-    [
-        'text' => 'Panel de Control',
-        'route' => 'welcome',
-        'icon' => 'fas fa-tachometer-alt',
-    ],
-    [
-        'text' => 'Usuarios',
-        'route' => 'usuario.index',
-        'icon' => 'fas fa-users',
-    ],
-    [
-        'text' => 'Dependencias',
-        'route' => 'dependencia.index',
-        'icon' => 'fas fa-building',
-    ],
-    [
-        'text' => 'Empleados',
-        'route' => 'empleado.index',
-        'icon' => 'fas fa-id-card',
-    ],
-    [
-        'text' => 'Servicios',
-        'route' => 'servicio.index',
-        'icon' => 'fas fa-concierge-bell',
-    ],
-    [
-        'text' => 'Empleado - Dependencia',
-        'route' => 'EmpleadoD.index',
-        'icon' => 'fas fa-user-tie',
-    ],
-    [
-        'text' => 'Turnos de Atención',
-        'route' => 'Turno.index',
-        'icon' => 'fas fa-clock',
-    ],
-    [
-        'text' => 'Historial de Servicios',
-        'route' => 'Historial.index',
-        'icon' => 'fas fa-history',
-    ],
-
-   [
-    'text' => 'Gestión de Turnos',
-    'icon' => 'fas fa-ticket-alt',
-    'submenu' => [
+        // Navbar items:
         [
-            'text' => 'Generar Turno',
-            'route' => 'turno.form',
-            'icon' => 'fas fa-plus-circle',
+            'type' => 'navbar-search',
+            'text' => 'search',
+            'topnav_right' => true,
         ],
         [
-            'text' => 'Listar Turnos',
-            'route' => 'Turno.listar',
-            'icon' => 'fas fa-list',
+            'type' => 'fullscreen-widget',
+            'topnav_right' => true,
         ],
-    ],
-],
 
-],
+        // Sidebar items:
+
+
+        // 🔧 NUEVA SECCIÓN PERSONALIZADA DEL SISTEMA
+        ['header' => 'Gestión del Sistema'],
+
+        [
+            'text' => 'Panel de Control',
+            'route' => 'welcome',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
+        [
+            'text' => 'Usuarios',
+            'route' => 'usuario.index',
+            'icon' => 'fas fa-users',
+        ],
+        [
+            'text' => 'Dependencias',
+            'route' => 'dependencia.index',
+            'icon' => 'fas fa-building',
+        ],
+        [
+            'text' => 'Empleados',
+            'route' => 'empleado.index',
+            'icon' => 'fas fa-id-card',
+        ],
+        [
+            'text' => 'Servicios',
+            'route' => 'servicio.index',
+            'icon' => 'fas fa-concierge-bell',
+        ],
+        [
+            'text' => 'Empleado - Dependencia',
+            'route' => 'EmpleadoD.index',
+            'icon' => 'fas fa-user-tie',
+        ],
+        [
+            'text' => 'Turnos de Atención',
+            'route' => 'Turno.index',
+            'icon' => 'fas fa-clock',
+        ],
+        [
+            'text' => 'Historial de Servicios',
+            'route' => 'Historial.index',
+            'icon' => 'fas fa-history',
+        ],
+
+        [
+            'text' => 'Gestión de Turnos',
+            'icon' => 'fas fa-ticket-alt',
+            'submenu' => [
+                [
+                    'text' => 'Generar Turno',
+                    'route' => 'turno.form',
+                    'icon' => 'fas fa-plus-circle',
+                ],
+                [
+                    'text' => 'Listar Turnos',
+                    'route' => 'Turno.listar',
+                    'icon' => 'fas fa-list',
+                ],
+            ],
+        ],
+
+    ],
 
 
     /*

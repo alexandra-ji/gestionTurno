@@ -36,36 +36,42 @@
                     {{-- Servicio --}}
                     <div class="mb-3">
                         <label class="form-label">Servicio</label>
-                        <select name="idServicio" class="form-select">
+                        <select name="idServicio" class="form-select  @error('idServicio') is-invalid @enderror">
                             <option value="">Seleccione un servicio</option>
                             @foreach($servicios as $servicio)
                             <option value="{{ $servicio->id }}">{{ $servicio->nombreServicio }}</option>
                             @endforeach
                         </select>
+                         @error('idServicio')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     {{-- Usuario --}}
                     <div class="mb-3">
                         <label class="form-label">Usuario</label>
-                        <select name="idUsuario" class="form-select">
+                        <select name="idUsuario" class="form-select @error('idUsuario') is-invalid @enderror">
                             <option value="">Seleccione un usuario</option>
                             @foreach($usuarios as $usuario)
                             <option value="{{ $usuario->id }}">{{ $usuario->numeroDocumento }}</option>
                             @endforeach
                         </select>
+                              @error('idUsuario')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-
-
-
-                    {{-- Empleado --}}
+                    
+                     {{-- Hora Inicio --}}
                     <div class="mb-3">
-                        <label class="form-label">Empleado</label>
-                        <select name="idEmpleado" class="form-select">
-                            <option value="">Seleccione un empleado</option>
-                            @foreach($empleados as $empleado)
-                            <option value="{{ $empleado->id }}">{{ $empleado->nombreCompleto }}</option>
-                            @endforeach
-                        </select>
+                        <label class="form-label">Hora Inicio</label>
+                        <input type="time" name="horaInicio"
+                            class="form-control @error('horaInicio') is-invalid @enderror">
+                        @error('horaInicio')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
+
+
+
 
 
 
@@ -108,16 +114,22 @@
                     </div>
 
 
-
-                    {{-- Hora Inicio --}}
+                    
+                    {{-- Empleado --}}
                     <div class="mb-3">
-                        <label class="form-label">Hora Inicio</label>
-                        <input type="time" name="horaInicio"
-                            class="form-control @error('horaInicio') is-invalid @enderror">
-                        @error('horaInicio')
+                        <label class="form-label">Empleado</label>
+                        <select name="idEmpleado" class="form-select @error('idEmpleado') is-invalid @enderror">
+                            <option value="">Seleccione un empleado</option>
+                            @foreach($empleados as $empleado)
+                            <option value="{{ $empleado->id }}">{{ $empleado->nombreCompleto }}</option>
+                            @endforeach
+                        </select>
+                            @error('idEmpleado')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
+
                     {{-- Hora Fin --}}
                     <div class="mb-3">
                         <label class="form-label">Hora Fin</label>

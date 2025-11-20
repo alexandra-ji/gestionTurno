@@ -53,7 +53,7 @@ class TurnosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TurnoRequest $request)
     {
         Turnos::create($request->all());
         return redirect()->route('Turno.index')->with('success', 'Turno creado correctamente');
@@ -74,7 +74,7 @@ class TurnosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(TurnoRequest $request, $id)
     {
         $turnos = Turnos::findOrFail($id);
         $turnos->update($request->all());
