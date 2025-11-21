@@ -32,7 +32,7 @@
          {{-- Código del Turno --}}
             <div class="mb-3">
                 <input type="text" name="codigoTurno" class="form-control form-control-sm"
-                       value="{{ $turnos->codigoTurno }}" placeholder="Código del Turno" >
+                       value="{{ $turnos->codigoTurno }}" placeholder="Código del Turno" readonly>
             </div>
 
             {{-- Estado del Turno --}}

@@ -69,10 +69,20 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-         $usuarios = Usuario::findorFail($id);
+
+        $usuarios = Usuario::findOrFail($id);
+
+    try {
         $usuarios->delete();
 
-        return redirect()->route('usuario.index')->with('success', 'Usuario Eliminado  correctamente');;
+        return redirect()->route('usuario.index')
+                         ->with('success', 'Usuario Eliminado  correctamente');
+
+    } catch (\Illuminate\Database\QueryException $e) {
+
+        return redirect()->route('usuario.index')
+                         ->with('error', 'No se puede eliminar el usuario  porque tiene un turno asociado.');
+    }
         
     }
 }

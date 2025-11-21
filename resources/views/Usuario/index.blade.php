@@ -9,6 +9,19 @@
 @endsection
 
 @section('Content')
+@if(session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Atención!',
+                text: "{{ session('error') }}",
+                confirmButtonText: 'Aceptar',
+            });
+        });
+    </script>
+    @endif
+    
 <div class="container mb-5">
 
     {{-- BOTONES SUPERIORES --}}
