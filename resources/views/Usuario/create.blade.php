@@ -39,6 +39,7 @@
                     <option value="">Tipo de Documento</option>
                     <option value="Tarjeta De Identidad">Tarjeta de Identidad</option>
                     <option value="Cedula De Ciudadania">Cédula de Ciudadanía</option>
+                    </select>
                  @error('tipoDocumento')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -48,7 +49,6 @@
             <div class="mb-3">
                 <input type="number" name="numeroDocumento" class="form-control form-control-sm @error('numeroDocumento') is-invalid @enderror"
                        placeholder="Número de Documento" >
-
                        @error('numeroDocumento')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -57,7 +57,7 @@
             {{-- Nombre --}}
             <div class="mb-3">
                 <input type="text" name="nombre" class="form-control form-control-sm @error('nombre') is-invalid @enderror"
-                       placeholder="Nombre del Usuario" >
+                       placeholder="Nombre del Usuario" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
 
                        @error('nombre')
                 <div class="invalid-feedback">{{ $message }}</div>

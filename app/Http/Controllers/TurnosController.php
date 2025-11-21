@@ -53,7 +53,7 @@ class TurnosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TurnoRequest $request)
     {
         Turnos::create($request->all());
         return redirect()->route('Turno.index')->with('success', 'Turno creado correctamente');
@@ -74,7 +74,7 @@ class TurnosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(TurnoRequest $request, $id)
     {
         $turnos = Turnos::findOrFail($id);
         $turnos->update($request->all());
@@ -84,12 +84,22 @@ class TurnosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        $turnos = Turnos::findOrFail($id);
-        $turnos->delete();
-        return redirect()->route('Turno.index')->with('success', 'Turno eliminado correctamente');
+   public function destroy($id)
+{
+    $turno = Turnos::findOrFail($id);
+
+    try {
+        $turno->delete();
+
+        return redirect()->route('Turno.index')
+                         ->with('success', 'El turno fue eliminado correctamente');
+
+    } catch (\Illuminate\Database\QueryException $e) {
+
+        return redirect()->route('Turno.index')
+                         ->with('error', 'No se puede eliminar el turno porque tiene historial de servicios asociado.');
     }
+}
 
 
     public function llamar($id)
@@ -128,7 +138,7 @@ class TurnosController extends Controller
         $turno->horaFin = now()->format('H:i:s');
         $turno->save();
 
-        return redirect()->route('Turno.index')->with('success', 'Turno cancelado correctamente.');
+        return redirect()->route('Turno.listar')->with('success', 'Turno cancelado correctamente.');
     }
 
     public function listar()

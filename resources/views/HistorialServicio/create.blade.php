@@ -39,10 +39,9 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            
-           
+             {{-- Turno--}}
 
-            <div>
+            <div class="mb-3">
                 <label for="idTurno" class="form-label   @error('idTurno') is-invalid @enderror">Turno</label>
                 <select name="idTurno" id="idTurno" class="form-select">
                     <option value="">Seleccione un Turno</option>
@@ -55,6 +54,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            
             {{-- Botón Guardar --}}
             <div class="d-grid">
                 <button type="submit" class="btn btn-success btn-sm py-2 fw-bold">
