@@ -23,7 +23,6 @@
     </div>
 </div>
 
-{{-- TÍTULO DE LA SECCIÓN --}}
 <h3 class="text-center my-4 fw-bold" style="color:#333;">Turnos Pendientes y Reasignados</h3>
 @endsection
 
@@ -88,11 +87,12 @@
 
                                     <td class="d-flex justify-content-center gap-2">
                                         <!-- Botón Llamar -->
-                                        <a href="{{ route('Turno.llamar', $turno->id) }}"
+                                        <button type="button"
+                                            onclick="llamarTurno({{ $turno->id }}, '{{ $turno->codigoTurno }}', '{{ $turno->servicio->nombreServicio ?? 'Servicio General' }}', '{{ $turno->servicio->dependencia->nombre ?? 'Dependencia General' }}')"
                                             class="btn btn-sm fw-bold px-3 shadow-sm"
                                             style="background-color:#ffc107; color:#333; border-radius:6px;">
-                                             Llamar
-                                        </a>
+                                            Llamar
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -102,49 +102,95 @@
             </div>
         </div>
     </div>
-
 </div>
 
-
-
+<!-- Audio para el sonido de llamado -->
+<audio id="llamadoAudio" preload="auto">
+    <!-- No necesitamos sources si vamos a usar sonido por defecto -->
+</audio>
 
 @endsection
 
+@push('scripts')
+<script>
+    // Audio element
+    const llamadoAudio = document.getElementById('llamadoAudio');
 
+    // Función para llamar el turno - DEFINIDA GLOBALMENTE
+    window.llamarTurno = function(turnoId, codigoTurno, servicio, dependencia) {
+        console.log('Llamando turno:', codigoTurno);
 
-@section('scripts')
-        <script>
-            // Función para llamar el turno y guardar en localStorage
-            function llamarTurno() {
-                const turnoData = {
-                    codigoTurno: "{{ $turno->codigoTurno }}",
-                    servicio: "{{ $turno->servicio->nombreServicio ?? 'Servicio General' }}",
-                    dependencia: "{{ $turno->servicio->dependencia->nombre ?? 'Dependencia General' }}",
-                    timestamp: new Date().getTime()
-                };
+        const turnoData = {
+            codigoTurno: codigoTurno,
+            servicio: servicio,
+            dependencia: dependencia,
+            timestamp: new Date().getTime()
+        };
 
-                console.log('Guardando turno en localStorage:', turnoData);
+        console.log('Guardando turno en localStorage:', turnoData);
 
-                // Guardar en localStorage para que el tablero lo detecte
-                localStorage.setItem('ultimoTurnoLlamado', JSON.stringify(turnoData));
+        // Guardar en localStorage para que el tablero lo detecte
+        localStorage.setItem('ultimoTurnoLlamado', JSON.stringify(turnoData));
 
-                // También en sessionStorage por seguridad
-                sessionStorage.setItem('turnoLlamadoReciente', JSON.stringify(turnoData));
+        // También en sessionStorage por seguridad
+        sessionStorage.setItem('turnoLlamadoReciente', JSON.stringify(turnoData));
 
-                // Mostrar mensaje de confirmación
-                alert('✅ Turno {{ $turno->codigoTurno }} llamado exitosamente!');
+        // Reproducir sonido
+        playLlamadoSound();
 
-                // Redirigir al tablero
-                window.location.href = "{{ route('TableroTurno') }}";
+        // Mostrar mensaje de confirmación
+        alert('✅ Turno ' + codigoTurno + ' llamado exitosamente!');
+
+        // Redirigir al tablero después de un breve delay para que el sonido se reproduzca
+        setTimeout(() => {
+                    window.location.href = `/turnos/llamar/${turnoId}`;
+                        }, 1000);
+    }
+
+    // Función para reproducir sonido
+    function playLlamadoSound() {
+        // Usar el API de audio del navegador para generar sonido
+        playFallbackSound();
+    }
+
+// Sonido de fallback usando el API de audio
+        function playFallbackSound() {
+            try {
+                const context = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Crear tres tonos sucesivos (como un beep-beep-beep) - cada uno de 6 segundos
+                beep(context, 800, 4000);  // Primer tono - 6 segundos
+                setTimeout(() => beep(context, 600, 4000), 7000);  // Segundo tono - 6 segundos, inicia después del primero
+                setTimeout(() => beep(context, 1000, 4000), 14000);  // Tercer tono - 6 segundos, inicia después del segundo
+
+            } catch (e) {
+                console.log('No se pudo reproducir sonido:', e);
+                // Fallback final: solo un alert de consola
+                console.log('🔊 Sonido de llamado para turno');
             }
+        }
+    // Función auxiliar para generar un beep
+    function beep(context, frequency, duration) {
+        const oscillator = context.createOscillator();
+        const gainNode = context.createGain();
 
-            // Llamar automáticamente la función cuando se carga la página
-            document.addEventListener('DOMContentLoaded', function() {
-                console.log('Página de llamar turno cargada - ejecutando llamado automático');
-                llamarTurno();
-            });
-        </script>
-@endsection
+        oscillator.connect(gainNode);
+        gainNode.connect(context.destination);
 
+        oscillator.frequency.value = frequency;
+        oscillator.type = 'sine';
 
+        gainNode.gain.setValueAtTime(0, context.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.3, context.currentTime + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, context.currentTime + duration/1000);
 
+        oscillator.start(context.currentTime);
+        oscillator.stop(context.currentTime + duration/1000);
+    }
+
+    // Asegurarnos de que la función esté disponible globalmente
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Script de turnos pendientes cargado correctamente');
+    });
+</script>
+@endpush
