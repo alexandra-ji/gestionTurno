@@ -50,7 +50,7 @@
             {{-- Dependencia --}}
             <div class="mb-3">
                 <label for="idDependencia" class="form-label fw-semibold">Dependencia</label>
-                <select name="idDependencia" id="idDependencia" class="form-select form-select-sm @error('idDependencia') is-invalid @enderror">
+                <select name="idDependencia" id="idDependencia" class="form-select  @error('idDependencia') is-invalid @enderror">
                     <option value="">Seleccione una dependencia</option>
                     @foreach($dependencias as $dependencia)
                         <option value="{{ $dependencia->id }}">{{ $dependencia->nombre }}</option>

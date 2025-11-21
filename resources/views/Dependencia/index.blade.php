@@ -3,30 +3,8 @@
 @section('title', 'Administrar Dependencias')
 
 @section('content_header')
+
     
-    <div class="bg-white shadow-sm">
-        <div class="container d-flex justify-content-between align-items-center py-3">
-            <!-- Logo y título -->
-            <div class="d-flex align-items-center gap-3">
-                <img src="{{ asset('imagenes/logo.jpg') }}" alt="Logo"
-                     style="height:60px;">
-                <h2 class="m-0 fw-bold" style="color:#333;">GestionTurnos</h2>
-            </div>
-            
-            
-        </div>
-
-        <!-- Barra verde de navegación -->
-        <div class="bg-success">
-            <div class="container d-flex justif y-content-center gap-5 py-2">
-                <a href="{{ route('welcome') }}" class="text-white fw-semibold text-decoration-none">Inicio</a>
-                <a href="{{route('usuario.index')}}" class="text-white fw-semibold text-decoration-none">Usuarios </a>
-                <a href="{{route('servicio.index')}}" class="text-white fw-semibold text-decoration-none">servicios</a>
-                <a href="{{route('empleado.index')}}" class="text-white fw-semibold text-decoration-none">Empleados </a>
-            </div>
-        </div>
-    </div>
-
     {{-- TÍTULO DE LA SECCIÓN --}}
     <h3 class="text-center my-4 fw-bold" style="color:#333;">Administrar Dependencias</h3>
 @endsection

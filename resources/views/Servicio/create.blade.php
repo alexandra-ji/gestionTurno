@@ -18,8 +18,8 @@
             {{-- Logo--}}
             <div>
                 <img src="{{ asset('imagenes/logo.jpg') }}"
-                     alt="Logo"
-                     style="height:60px;">
+                    alt="Logo"
+                    style="height:60px;">
             </div>
         </div>
 
@@ -33,10 +33,10 @@
 
             {{-- Nombre Del Servicio--}}
             <div class="mb-3">
-                
+
                 <input type="text" name="nombreServicio" class="form-control form-control-sm  @error('nombreServicio') is-invalid @enderror"
-                       placeholder="Nombre del Servicio" >
-                        @error('nombreServicio')
+                    placeholder="Nombre del Servicio">
+                @error('nombreServicio')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -44,28 +44,26 @@
             {{-- Descripcion--}}
             <div class="mb-3">
                 <input type="text" name="descripcion" class="form-control form-control-sm   @error('descripcion') is-invalid @enderror"
-                       placeholder="Descripcion deL servicio" >
+                    placeholder="Descripcion deL servicio">
 
-                        @error('descripcion')
+                @error('descripcion')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
+            {{-- Dependencia --}}
+            <div class="mb-3">
+                <label for="idDependencia" class="form-label  fw-semibold">Dependencia</label>
+                <select name="idDependencia" id="idDependencia" class="form-select @error('Dependencia') is-invalid @enderror">
+                    @foreach($dependencias as $dependencia)
+                    <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
+                    @endforeach
+                </select>
 
-            <div>
-                        <label for="Dependencia" class="form-label   @error('Dependencia') is-invalid @enderror">Dependencia</label>
-                        <select name="idDependencia" id="idDependencia" class="form-select">
-                            @foreach($dependencias as $dependencia)
-                            <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
-                            @endforeach
-                        </select>
-
-                         @error('Dependencia')
+                @error('Dependencia')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-                    </div>
-
-
+            </div>
 
             {{-- Botón Guardar --}}
             <div class="d-grid">
@@ -77,7 +75,7 @@
             {{-- Botón Volver --}}
             <div class="text-center mt-3">
                 <a href="{{ route('servicio.index') }}"
-                   class="btn btn-link text-decoration-none text-danger fw-semibold">
+                    class="btn btn-link text-decoration-none text-danger fw-semibold">
                     ← Volver
                 </a>
             </div>

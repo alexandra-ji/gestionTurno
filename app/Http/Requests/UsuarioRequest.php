@@ -24,7 +24,7 @@ class UsuarioRequest extends FormRequest
         return [
         'tipoDocumento' => 'required|in:Tarjeta De Identidad,Cedula De Ciudadania,Cedula De Extranjeria,Permiso Por Proteccion Temporal',
         'numeroDocumento' => 'required|digits_between:5,20|regex:/^[0-9]+$/',
-        'nombre' => 'required|string|max:100|min:3',
+        'nombre' => 'required|min:3|regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/',
         'correo' => 'required|string|email|max:100',
         'telefono' => 'required|digits_between:10,20|regex:/^[0-9]+$/',
         ];

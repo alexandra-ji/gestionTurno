@@ -36,9 +36,11 @@
                {{-- Nombre De La Dependencia--}}
             <div class="mb-3">
                 <input type="text" name="nombre" class="form-control form-control-sm"
-                value="{{ $dependencias->nombre }}"
-                       placeholder="Nombre de la Dependencia" required>
-            {{-- Nombre --}}
+                value="{{ $dependencias->nombre }}"placeholder="Nombre de la Dependencia" required>
+                 </div>
+                       
+
+            {{-- Descripcion --}}
             <div class="mb-3">
                 <input type="text" name="descripcion" class="form-control form-control-sm"
                        value="{{ $dependencias->descripcion }}" placeholder="Descripcion de la Dependencia" required>

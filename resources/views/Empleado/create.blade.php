@@ -33,7 +33,7 @@
             {{-- Nombre Completo --}}
             <div class="mb-3">
                 <input type="text" name="nombreCompleto" class="form-control form-control-sm  @error('nombreCompleto') is-invalid @enderror"
-                       placeholder="Nombre Completo del Empleado">
+                       placeholder="Nombre Completo del Empleado" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
 
                         @error('nombreCompleto')
                 <div class="invalid-feedback">{{ $message }}</div>

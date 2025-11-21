@@ -30,7 +30,7 @@
 </form>
 
 <!-- Botón Cancelar -->
-<form action="{{ route('Turno.atender', $turno->id) }}" method="POST" class="mb-3">
+<form action="{{ route('Turno.cancelar', $turno->id) }}" method="POST" class="mb-3">
     @csrf
     <button type="submit" class="btn btn-success w-100 fw-bold py-2 shadow-sm">
         <i class="bi bi-x-circle"></i> Cancelar
