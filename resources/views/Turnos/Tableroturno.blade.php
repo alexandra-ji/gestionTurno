@@ -7,21 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --success-color: #4bb543;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --info-color: #17a2b8;
-        }
-
+        /* ESTILOS SIMPLIFICADOS Y CORREGIDOS */
         body {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
-            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         .dashboard-container {
@@ -38,24 +31,13 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .left-panel {
+        .left-panel, .services-panel {
             background: white;
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             height: 100%;
-        }
-
-        .services-panel {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            height: 100%;
-        }
-
-        .waiting-turns-section {
-            margin-top: 0;
+            margin-bottom: 2rem;
         }
 
         .waiting-header {
@@ -64,11 +46,11 @@
             align-items: center;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 2px solid #4361ee;
         }
 
         .waiting-count {
-            background: var(--primary-color);
+            background: #4361ee;
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
@@ -104,7 +86,7 @@
         }
 
         .position {
-            background: var(--warning-color);
+            background: #ffc107;
             color: white;
             width: 35px;
             height: 35px;
@@ -119,11 +101,11 @@
         .turn-number {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #4361ee;
         }
 
         .service-badge {
-            background: var(--info-color);
+            background: #17a2b8;
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 15px;
@@ -142,24 +124,12 @@
             border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            border-left: 5px solid var(--success-color);
+            border-left: 5px solid #4bb543;
             transition: all 0.3s ease;
         }
 
-        .service-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-
         .current-turn-display {
-            background: linear-gradient(135deg, var(--success-color), #3a9d5d);
+            background: linear-gradient(135deg, #4bb543, #3a9d5d);
             color: white;
             border-radius: 12px;
             padding: 1.5rem;
@@ -177,7 +147,7 @@
         .clock-display {
             font-size: 3rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #4361ee;
             text-align: center;
             margin: 1rem 0;
             font-family: 'Courier New', monospace;
@@ -190,28 +160,6 @@
             margin-bottom: 1rem;
         }
 
-        .status-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .status-called {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-
-        .section-title {
-            border-left: 4px solid var(--primary-color);
-            padding-left: 1rem;
-            margin: 0 0 1rem 0;
-            color: #333;
-            font-weight: 600;
-        }
-
         .empty-state {
             text-align: center;
             padding: 2rem;
@@ -219,18 +167,6 @@
             background: #f8f9fa;
             border-radius: 12px;
             border: 2px dashed #dee2e6;
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #dee2e6;
-        }
-
-        .dependency-info {
-            font-size: 0.9rem;
-            color: #6c757d;
-            margin-top: 0.25rem;
         }
 
         .auto-refresh-notice {
@@ -256,7 +192,6 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            animation: fadeIn 0.3s ease-in;
         }
 
         .popup-content {
@@ -272,38 +207,12 @@
             animation: popIn 0.5s ease-out;
         }
 
-        .popup-header h3 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
         .popup-turno {
             font-size: 5rem;
             font-weight: 900;
             margin: 2rem 0;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
             animation: pulse 0.8s infinite;
-        }
-
-        .popup-servicio {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .popup-dependencia {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-        }
-
-        .popup-footer {
-            border-top: 1px solid rgba(255,255,255,0.3);
-            padding-top: 1rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         @keyframes popIn {
@@ -318,26 +227,12 @@
         }
 
         @media (max-width: 768px) {
-            .turn-display {
-                font-size: 3rem;
-            }
-
             .called-turn {
                 font-size: 2rem;
             }
 
             .clock-display {
                 font-size: 2rem;
-            }
-
-            .waiting-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .service-info {
-                text-align: left;
             }
 
             .popup-turno {
@@ -364,7 +259,7 @@
 
         <div class="row">
             <!-- Columna Izquierda: Turnos en Espera -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-6">
                 <div class="left-panel">
                     <div class="waiting-turns-section">
                         <div class="waiting-header">
@@ -385,11 +280,8 @@
                                         </div>
                                         <div class="service-info">
                                             <div><strong>{{ $turnoEspera->servicio->nombreServicio ?? 'N/A' }}</strong></div>
-                                            <div class="dependency-info">
-                                                {{ $turnoEspera->servicio->dependencia->nombre ?? 'N/A' }}
-                                            </div>
                                             <div class="small">
-                                                Generado: {{ \Carbon\Carbon::parse($turnoEspera->created_at)->format('H:i') }}
+                                                {{ $turnoEspera->servicio->dependencia->nombre ?? 'N/A' }}
                                             </div>
                                         </div>
                                     </div>
@@ -406,9 +298,9 @@
             </div>
 
             <!-- Columna Derecha: En Progreso -->
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-6">
                 <div class="services-panel">
-                    <h3 class="section-title"><i class="bi bi-megaphone-fill"></i> En Progreso</h3>
+                    <h4 class="mb-3"><i class="bi bi-megaphone-fill"></i> En Progreso</h4>
 
                     @if($turnosLlamados->count() > 0)
                         @foreach($turnosLlamados as $turnoLlamado)
@@ -418,7 +310,7 @@
                                         <i class="bi bi-person-check-fill text-success"></i>
                                         {{ $turnoLlamado->servicio->nombreServicio ?? 'Servicio General' }}
                                     </div>
-                                    <span class="status-badge status-called">
+                                    <span class="badge bg-info text-dark">
                                         <i class="bi bi-clock-history"></i> En Atención
                                     </span>
                                 </div>
@@ -431,10 +323,6 @@
                                         <div><i class="bi bi-clock"></i> Iniciado: {{ \Carbon\Carbon::parse($turnoLlamado->updated_at)->format('H:i') }}</div>
                                     </div>
                                 </div>
-
-                                <div class="mt-2 small text-muted">
-                                    <i class="bi bi-person"></i> ID Usuario: {{ $turnoLlamado->idUsuario }}
-                                </div>
                             </div>
                         @endforeach
                     @else
@@ -445,7 +333,6 @@
                         </div>
                     @endif
 
-                    <!-- Aviso de actualización automática -->
                     <div class="auto-refresh-notice">
                         <i class="bi bi-arrow-clockwise"></i>
                         La página se actualiza automáticamente cada 30 segundos
@@ -472,21 +359,57 @@
         </div>
     </div>
 
-    <!-- Meta tag para actualización automática -->
-    <meta http-equiv="refresh" content="30">
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Variables de control
+        let popupAlreadyShown = false;
+
         // Reloj en tiempo real
         function actualizarReloj() {
             const ahora = new Date();
             document.getElementById('currentTime').textContent = ahora.toLocaleTimeString('es-ES');
         }
 
+        // Función para reproducir sonido de llamado
+        function playLlamadoSound() {
+            try {
+                const context = new (window.AudioContext || window.webkitAudioContext)();
+
+                // Crear tres tonos sucesivos
+                beep(context, 800, 200);
+                setTimeout(() => beep(context, 600, 200), 300);
+                setTimeout(() => beep(context, 1000, 300), 600);
+
+            } catch (e) {
+                console.log('No se pudo reproducir sonido:', e);
+            }
+        }
+
+        // Función auxiliar para generar un beep
+        function beep(context, frequency, duration) {
+            const oscillator = context.createOscillator();
+            const gainNode = context.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(context.destination);
+
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0, context.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.3, context.currentTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, context.currentTime + duration/1000);
+
+            oscillator.start(context.currentTime);
+            oscillator.stop(context.currentTime + duration/1000);
+        }
+
         // Función para mostrar el popup del turno llamado
         function mostrarTurnoLlamado(codigoTurno, servicio, dependencia) {
+            if (popupAlreadyShown) return;
+
             const popup = document.getElementById('turnoPopup');
             const turnoNumber = document.getElementById('popupTurnoNumber');
             const servicioElement = document.getElementById('popupServicio');
@@ -498,8 +421,12 @@
             servicioElement.textContent = servicio;
             dependenciaElement.textContent = dependencia;
 
+            // Reproducir sonido
+            playLlamadoSound();
+
             // Mostrar popup
             popup.style.display = 'flex';
+            popupAlreadyShown = true;
 
             // Contador regresivo
             let seconds = 10;
@@ -512,6 +439,11 @@
                 if (seconds <= 0) {
                     clearInterval(countdown);
                     popup.style.display = 'none';
+
+                    // Permitir mostrar popup nuevamente después de 2 segundos
+                    setTimeout(() => {
+                        popupAlreadyShown = false;
+                    }, 2000);
                 }
             }, 1000);
         }
@@ -520,16 +452,18 @@
         function verificarTurnoLlamado() {
             // Verificar en localStorage
             const turnoLlamado = localStorage.getItem('ultimoTurnoLlamado');
-
-            if (turnoLlamado) {
+            if (turnoLlamado && !popupAlreadyShown) {
                 const turnoData = JSON.parse(turnoLlamado);
 
-                // Mostrar el popup
-                mostrarTurnoLlamado(
-                    turnoData.codigoTurno,
-                    turnoData.servicio,
-                    turnoData.dependencia
-                );
+                // Verificar que no sea muy viejo (menos de 5 segundos)
+                const ahora = new Date().getTime();
+                if (ahora - turnoData.timestamp < 5000) {
+                    mostrarTurnoLlamado(
+                        turnoData.codigoTurno,
+                        turnoData.servicio,
+                        turnoData.dependencia
+                    );
+                }
 
                 // Limpiar el localStorage después de mostrar
                 localStorage.removeItem('ultimoTurnoLlamado');
@@ -538,14 +472,17 @@
 
             // También verificar en sessionStorage
             const turnoSession = sessionStorage.getItem('turnoLlamadoReciente');
-            if (turnoSession) {
+            if (turnoSession && !popupAlreadyShown) {
                 const turnoData = JSON.parse(turnoSession);
 
-                mostrarTurnoLlamado(
-                    turnoData.codigoTurno,
-                    turnoData.servicio,
-                    turnoData.dependencia
-                );
+                const ahora = new Date().getTime();
+                if (ahora - turnoData.timestamp < 5000) {
+                    mostrarTurnoLlamado(
+                        turnoData.codigoTurno,
+                        turnoData.servicio,
+                        turnoData.dependencia
+                    );
+                }
 
                 sessionStorage.removeItem('turnoLlamadoReciente');
             }
@@ -557,39 +494,10 @@
             actualizarReloj();
             setInterval(actualizarReloj, 1000);
 
-            // Verificar turnos llamados después de un breve delay
-            setTimeout(verificarTurnoLlamado, 500);
+            // Verificar turnos llamados inmediatamente
+            verificarTurnoLlamado();
+
+            // Verificar periódicamente cada segundo
+            setInterval(verificarTurnoLlamado, 1000);
         });
-
-        // También verificar periódicamente por si acaso
-        setInterval(verificarTurnoLlamado, 2000);
     </script>
-
-
-<script>
-    function llamarTurno() {
-        const turnoData = {
-            codigoTurno: "{{ $turno->codigoTurno }}",
-            servicio: "{{ $turno->servicio->nombreServicio ?? 'Servicio General' }}",
-            dependencia: "{{ $turno->servicio->dependencia->nombre ?? 'Dependencia General' }}",
-            timestamp: new Date().getTime()
-        };
-
-        console.log('Guardando turno:', turnoData);
-        localStorage.setItem('ultimoTurnoLlamado', JSON.stringify(turnoData));
-        sessionStorage.setItem('turnoLlamadoReciente', JSON.stringify(turnoData));
-
-        alert('✅ Turno {{ $turno->codigoTurno }} llamado!');
-        window.location.href = "{{ route('TableroTurno') }}";
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        llamarTurno();
-    });
-</script>
-
-
-
-
-</body>
-</html>
