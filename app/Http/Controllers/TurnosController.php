@@ -17,7 +17,10 @@ class TurnosController extends Controller
     public function index()
     { {
             // Trae todos los turnos, sin importar el estado
-            $turnos = Turnos::with(['usuario', 'servicio', 'empleado'])->get();
+            $turnos = Turnos::with(['usuario', 'servicio', 'empleado'])
+                ->orderBy('updated_at', 'desc')
+                ->get();
+
 
             return view('Turnos.index', compact('turnos'));
         }
@@ -29,7 +32,7 @@ class TurnosController extends Controller
     public function create()
     {
         // Obtener el último turno ordenado por ID de forma descendente (el más reciente primero)
-        $ultimoTurno = Turnos::orderBy('id', 'desc')->first();
+        $ultimoTurno = Turnos::orderBy('id', 'asc')->first();
 
         if ($ultimoTurno) {
             // Extraer la parte numérica del código, ej. "T010" → 10
@@ -84,22 +87,21 @@ class TurnosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-   public function destroy($id)
-{
-    $turno = Turnos::findOrFail($id);
+    public function destroy($id)
+    {
+        $turno = Turnos::findOrFail($id);
 
-    try {
-        $turno->delete();
+        try {
+            $turno->delete();
 
-        return redirect()->route('Turno.index')
-                         ->with('success', 'El turno fue eliminado correctamente');
+            return redirect()->route('Turno.index')
+                ->with('success', 'El turno fue eliminado correctamente');
+        } catch (\Illuminate\Database\QueryException $e) {
 
-    } catch (\Illuminate\Database\QueryException $e) {
-
-        return redirect()->route('Turno.index')
-                         ->with('error', 'No se puede eliminar el turno porque tiene historial de servicios asociado.');
+            return redirect()->route('Turno.index')
+                ->with('error', 'No se puede eliminar el turno porque tiene historial de servicios asociado.');
+        }
     }
-}
 
 
     public function llamar($id)
@@ -107,6 +109,14 @@ class TurnosController extends Controller
         $turno = Turnos::findOrFail($id);
         return view('Turnos.llamar', compact('turno'));
     }
+
+    public function volverallamar($id)
+
+    {
+        $turno = Turnos::findOrFail($id);
+        return view('Turnos.llamar', compact('turno'));
+    }
+
 
     public function atender($id)
     {
@@ -154,31 +164,29 @@ class TurnosController extends Controller
     }
 
     public function mostrarAtencion($id)
-{
-    // Carga el turno con relaciones si las tienes (cliente, servicio, etc.)
-$turno = Turnos::with(['usuario', 'Servicio', 'empleado'])->findOrFail($id);
-    // Si no tiene horaInicio, la guardamos al momento de abrir la vista
-    if (!$turno->horaInicio) {
-        $turno->horaInicio = now()->format('H:i:s');
-        $turno->estadoTurno = 'En atención';
-        $turno->save();
+    {
+        // Carga el turno con relaciones si las tienes (cliente, servicio, etc.)
+        $turno = Turnos::with(['usuario', 'Servicio', 'empleado'])->findOrFail($id);
+        // Si no tiene horaInicio, la guardamos al momento de abrir la vista
+        if (!$turno->horaInicio) {
+            $turno->horaInicio = now()->format('H:i:s');
+            $turno->estadoTurno = 'En atención';
+            $turno->save();
+        }
+
+        return view('turnos.AtenderTurno', compact('turno'));
     }
 
-    return view('turnos.AtenderTurno', compact('turno'));
-}
+    public function finalizarAtencion($id)
+    {
+        $turno = Turnos::findOrFail($id);
 
-public function finalizarAtencion($id)
-{
-    $turno = Turnos::findOrFail($id);
+        // Guardar hora final y estado
+        $turno->horaFin = now()->format('H:i:s');
+        $turno->estadoTurno = 'Atendido';
+        $turno->save();
 
-    // Guardar hora final y estado
-    $turno->horaFin = now()->format('H:i:s');
-    $turno->estadoTurno = 'Atendido';
-    $turno->save();
-
-    return redirect()->route('Turno.index')
-        ->with('success', 'Turno finalizado correctamente.');
-}
-
-
+        return redirect()->route('Turno.index')
+            ->with('success', 'Turno finalizado correctamente.');
+    }
 }

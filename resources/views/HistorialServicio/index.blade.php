@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-12">
             <div class="table-responsive rounded shadow-sm">
-                <table class="table table-bordered align-middle text-center mb-0"
+                <table  id="myTable"  class="table table-bordered align-middle text-center mb-0"
                        style="background-color:white; color:#333;">
                     <thead style="background-color:#a8e6a1; color:#333;">
                         <tr>

@@ -49,7 +49,7 @@
                     {{-- Usuario --}}
                     <div class="mb-3">
                         <label class="form-label">Usuario</label>
-                        <select name="idUsuario" class="form-select @error('idUsuario') is-invalid @enderror">
+                        <select name="idUsuario" class="form-control @error('idUsuario') is-invalid @enderror">
                             <option value="">Seleccione un usuario</option>
                             @foreach($usuarios as $usuario)
                             <option value="{{ $usuario->id }}">{{ $usuario->numeroDocumento }}</option>
