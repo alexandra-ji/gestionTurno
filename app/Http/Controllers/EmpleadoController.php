@@ -33,7 +33,7 @@ class EmpleadoController extends Controller
         Empleado ::create(
             $request->all()
         );
-        return redirect()->route('empleado.index')->with('success', 'Cliente creado correctamente');
+        return redirect()->route('empleado.index')->with('success', 'Cliente Creado Correctamente');
     }
 
     /**
@@ -60,7 +60,7 @@ class EmpleadoController extends Controller
     {
        $empleados = Empleado::findorFail($id);
        $empleados->update($request->all());
-       return redirect()->route('empleado.index');
+       return redirect()->route('empleado.index')->with('success', 'Cliente Actualizado Correctamente');
     }
 
     /**
@@ -70,6 +70,6 @@ class EmpleadoController extends Controller
     {
         $empleados = Empleado::findorFail($id);
         $empleados->delete();
-        return redirect()->route('empleado.index')->with('success', 'Cliente Eliminado correctamente');
+        return redirect()->route('empleado.index')->with('success', 'Cliente Eliminado Correctamente');
     }
 }

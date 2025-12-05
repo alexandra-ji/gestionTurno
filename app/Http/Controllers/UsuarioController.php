@@ -33,7 +33,7 @@ class UsuarioController extends Controller
         Usuario::create(
              request()->all());
 
-             return redirect()->route('usuario.index')->with('success', 'Usuario creado correctamente');;
+             return redirect()->route('usuario.index')->with('success', 'Usuario Creado Correctamente');
     }
 
     /**
@@ -61,7 +61,7 @@ class UsuarioController extends Controller
         $usuarios = Usuario::findorFail($id);
         $usuarios->update($request->all()); 
 
-        return redirect()->route('usuario.index');
+        return redirect()->route('usuario.index')->with('success', 'Usuario Actualizado Correctamente');
     }
 
     /**
@@ -76,7 +76,7 @@ class UsuarioController extends Controller
         $usuarios->delete();
 
         return redirect()->route('usuario.index')
-                         ->with('success', 'Usuario Eliminado  correctamente');
+                         ->with('success', 'Usuario Eliminado  Correctamente');
 
     } catch (\Illuminate\Database\QueryException $e) {
 

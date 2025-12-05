@@ -35,9 +35,8 @@
 
             {{-- Tipo de Documento --}}
             <div class="mb-3">
+                <option value="">Tipo de Documento</option>
                 <select name="tipoDocumento" class="form-control form-select-sm  @error('tipoDocumento') is-invalid @enderror">
-                    <option value="">Tipo de Documento</option>
-                    <option value="Tarjeta De Identidad">Tarjeta de Identidad</option>
                     <option value="Cedula De Ciudadania">Cédula de Ciudadanía</option>
                     </select>
                  @error('tipoDocumento')
@@ -97,7 +96,7 @@
                    class="btn btn-link text-decoration-none text-danger fw-semibold">
                     ← Volver
                 </a>
-            </div>
+            </div> 
         </form>
     </div>
 </div>

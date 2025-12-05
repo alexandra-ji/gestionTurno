@@ -3,12 +3,11 @@
 @section('title', 'Administrar Usuarios')
 
 @section('content_header')
-    
-    {{-- TÍTULO DE LA SECCIÓN --}}
     <h3 class="text-center my-4 fw-bold" style="color:#333;">Administrar Usuarios</h3>
 @endsection
 
 @section('Content')
+
 @if(session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -20,7 +19,7 @@
             });
         });
     </script>
-    @endif
+@endif
     
 <div class="container mb-5">
 
@@ -47,7 +46,7 @@
             <div class="table-responsive rounded shadow-sm">
                 <table  id="myTable"  class="table table-bordered align-middle text-center mb-0"
                        style="background-color:white; color:#333;">
-                    <thead style="background-color:#a8e6a1; color:#333;">
+                    <thead style="background-color:#145A32; color:#333;">
                         <tr>
                             <th>ID</th>
                             <th>Tipo Documento</th>
@@ -129,4 +128,20 @@
             });
         }
     </script>
+
+
 @endsection
+@push('scripts')
+<script>
+$(document).ready(function () {
+    $('#myTable').DataTable({
+        pageLength: 10,
+        responsive: true,
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+        }
+    });
+});
+</script>
+@endpush
+

@@ -37,7 +37,7 @@ class EmpleadoDependenciaController extends Controller
     {
         EmpleadoDependencia::create(
             $request->all());
-            return redirect()->route('EmpleadoD.index')->with('success', 'Empleado-Dependencia creado correctamente');
+            return redirect()->route('EmpleadoD.index')->with('success', 'Empleado-Dependencia Creado Correctamente');
     }
 
     /**
@@ -67,7 +67,7 @@ class EmpleadoDependenciaController extends Controller
         $EmpleadoDe = EmpleadoDependencia::findorFail($id);
         $EmpleadoDe->update($request->all());
 
-        return redirect()->route('EmpleadoD.index');
+        return redirect()->route('EmpleadoD.index')->with('success', 'Empleado-Dependencia Actualizado Correctamente');
     }
 
     /**
@@ -77,6 +77,6 @@ class EmpleadoDependenciaController extends Controller
     {
         $EmpleadoDe = EmpleadoDependencia::findorFail($id);
         $EmpleadoDe->delete();
-        return redirect()->route('EmpleadoD.index')->with('success', 'empleado-Dependencia eliminado correctamente');
+        return redirect()->route('EmpleadoD.index')->with('success', 'empleado-Dependencia Eliminado Correctamente');
     }
 }

@@ -36,7 +36,7 @@ class HistorialServicioController extends Controller
         HistorialServicio::create(
             $request->all()
         );
-        return redirect()->route('Historial.index')->with('success', 'Historial Servicio creado correctamente');;
+        return redirect()->route('Historial.index')->with('success', 'Historial Servicio Creado Correctamente');
     }
 
     /**
@@ -64,7 +64,7 @@ class HistorialServicioController extends Controller
     {
         $historial = HistorialServicio::findorFail($id);
         $historial ->update($request->all());
-        return redirect()->route('Historial.index');
+        return redirect()->route('Historial.index')->with('success', 'Historial Servicio Actualizado Correctamente');
     }
 
     /**
@@ -74,7 +74,7 @@ class HistorialServicioController extends Controller
     {
         $historial = HistorialServicio::findorFail($id);
         $historial->delete();
-        return redirect()->route('Historial.index')->with('success', 'Historial Servicio Eliminado correctamente');;
+        return redirect()->route('Historial.index')->with('success', 'Historial Servicio Eliminado Correctamente');;
 
     }
 }

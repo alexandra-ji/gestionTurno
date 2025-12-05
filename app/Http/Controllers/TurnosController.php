@@ -59,7 +59,7 @@ class TurnosController extends Controller
     public function store(TurnoRequest $request)
     {
         Turnos::create($request->all());
-        return redirect()->route('Turno.index')->with('success', 'Turno creado correctamente');
+        return redirect()->route('Turno.index')->with('success', 'Turno Creado Correctamente');
     }
 
     /**
@@ -81,7 +81,7 @@ class TurnosController extends Controller
     {
         $turnos = Turnos::findOrFail($id);
         $turnos->update($request->all());
-        return redirect()->route('Turno.index')->with('success', 'Turno actualizado correctamente');
+        return redirect()->route('Turno.index')->with('success', 'Turno Actualizado Correctamente');
     }
 
     /**
@@ -95,7 +95,7 @@ class TurnosController extends Controller
             $turno->delete();
 
             return redirect()->route('Turno.index')
-                ->with('success', 'El turno fue eliminado correctamente');
+                ->with('success', 'El turno fue Eliminado Correctamente');
         } catch (\Illuminate\Database\QueryException $e) {
 
             return redirect()->route('Turno.index')

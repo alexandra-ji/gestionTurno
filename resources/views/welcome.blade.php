@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Bienvenido
+Bienvenido
 @endsection
 
 @section('titleContent')
-    <div class="text-center my-5">
-        <h1 class="fw-bold display-5">Panel de Control</h1>
-        <p class="text-muted">Accede rápidamente a las secciones principales del sistema</p>
-    </div>
+<div class="text-center my-5">
+    <h1 class="fw-bold display-5">Panel de Control</h1>
+    <p class="text-muted">Accede rápidamente a las secciones principales del sistema</p>
+</div>
 @endsection
 
 @section('Content')
@@ -52,7 +52,7 @@
         </div>
 
 
-        
+
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="font-size: 0.9rem;">
                 {{-- Imagen superior --}}
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="font-size: 0.9rem;">
                 {{-- Imagen superior --}}
                 <img src="{{ asset('imagenes/servicioo.png') }}" alt="Imagen de usuarios" class="card-img-top" style="height: 150px; object-fit: cover;">
@@ -113,28 +113,11 @@
         <img src="{{ asset('imagenes/turnos.png') }}" alt="Imagen de Turnos de Atención" class="card-img-top" style="height: 150px; object-fit: cover;">
 
         <div class="card-body d-flex flex-column align-items-center text-center p-3">
-            <h6 class="card-title fw-bold mt-2 mb-2">Gestión de Turnos de Atención</h6>
-            <p class="card-text text-muted mb-3" style="font-size: 0.85rem;">
-                Administra y organiza los turnos de atención al público para mejorar la experiencia de los usuarios en puntos de servicio.
-            </p>
-            <a href="{{route('Turno.index') }}" class="btn btn-sm btn-outline-success w-100 mt-auto">
-                Ver Turnos de Atención
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="font-size: 0.9rem;">
-        {{-- Imagen superior --}}
-        <img src="{{ asset('imagenes/historial.png') }}" alt="Imagen de Turnos de Atención" class="card-img-top" style="height: 150px; object-fit: cover;">
-
-        <div class="card-body d-flex flex-column align-items-center text-center p-3">
             <h6 class="card-title fw-bold mt-2 mb-2">Historial de Servicios</h6>
             <p class="card-text text-muted mb-3" style="font-size: 0.85rem;">
                 Administra y organiza los turnos de atención al público para mejorar la experiencia de los usuarios en puntos de servicio.
             </p>
-            <a href="{{route('Historial.index')}}" class="btn btn-sm btn-outline-success w-100 mt-auto">
+            <a href="{{route('Turno.index') }}" class="btn btn-sm btn-outline-success w-100 mt-auto">
                 Ver Historial de Servicios
             </a>
         </div>
@@ -142,39 +125,47 @@
 </div>
 
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-  <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden text-center" style="font-size: 0.9rem;">
-    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-      
-      <div class="mb-3">
-        <i class="bi bi-ticket-detailed" style="font-size: 2.5rem; color: #198754;"></i>
-      </div>
-      <h5 class="card-title fw-bold text-success">Generar Turno</h5>
-      <p class="card-text text-muted">
-        Cree un nuevo turno para atención rápida.
-      </p>
-      <a href="{{ route('turno.form') }}" class="btn btn-outline-success btn-sm px-4 mt-2">Ir</a>
-    
+    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden text-center" style="font-size: 0.9rem;">
+        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+
+            <div class="mb-3">
+                <i class="bi bi-ticket-detailed" style="font-size: 2.5rem; color: #198754;"></i>
+            </div>
+            <h5 class="card-title fw-bold text">Generar Turno</h5>
+            <p class="card-text text-muted">
+                Cree un nuevo turno para atención rápida.
+            </p>
+            <a href="{{ route('turno.form') }}" class="btn btn-outline-success btn-sm px-4 mt-2">Ir</a>
+
+        </div>
     </div>
-  </div>
 </div>
 
 
 
 
-<div class="col-12 col-sm-3 col-md-4 col-lg-3  mt-4">
+<div class="col-12 col-sm-3 col-md-4 col-lg-3 mt-4">
     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="font-size: 0.9rem;">
-        {{-- Imagen superior --}}
-      <div class="card-body d-flex flex-column align-items-center text-center p-3">
-            <h6 class="card-title fw-bold mt-2 mb-2">ListarTurnos</h6>
-            <p class="card-text text-muted mb-3" style="font-size: 0.85rem;">
+        <div class="card-body d-flex flex-column align-items-center justify-content-center text-center p-3">
+
+            <div class="mb-3">
+                <i class="bi bi-card-checklist" style="font-size: 2.5rem; color: #198754;"></i>
+            </div>
+
+            <h6 class="card-title fw-bold text mt-2 mb-2">Listar Turnos</h6>
+
+            <p class="card-text text-muted" style="font-size: 0.85rem;">
+                Consulte todos los turnos generados.
             </p>
-             <a href="{{route('Turno.listar')}}" class="btn btn-sm btn-outline-success w-100 mt-auto">
-                ir 
+
+            <a href="{{ route('Turno.listar') }}" class="btn btn-sm btn-outline-success w-100 mt-auto">
+                Ir
             </a>
-            
+
         </div>
     </div>
-    </div>
+</div>
+
 </div>
 
 

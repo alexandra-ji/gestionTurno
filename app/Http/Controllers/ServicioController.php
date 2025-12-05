@@ -34,7 +34,7 @@ class ServicioController extends Controller
     {
         Servicio::create(
                 $request->all());
-                return redirect()->route('servicio.index')->with('success', 'Servicio creado correctamente');
+                return redirect()->route('servicio.index')->with('success', 'Servicio Creado Correctamente');
         
     }
 
@@ -63,7 +63,7 @@ class ServicioController extends Controller
     {
         $servicios = Servicio::findorFail($id);
         $servicios->update($request->all());
-        return redirect()->route('servicio.index');
+        return redirect()->route('servicio.index')->with('success', 'Servicio Actualizado Correctamente');
     }
 
     /**
@@ -73,6 +73,6 @@ class ServicioController extends Controller
     {
         $servicios = Servicio::findorFail($id);
         $servicios->delete();
-        return redirect()->route('servicio.index')->with('success', 'Servicio Eliminado correctamente');
+        return redirect()->route('servicio.index')->with('success', 'Servicio Eliminado Correctamente');
     }
 }

@@ -45,10 +45,10 @@
                 <input type="text" name="descripcion" class="form-control form-control-sm"
                        value="{{ $dependencias->descripcion }}" placeholder="Descripcion de la Dependencia" required>
             </div>
-            {{-- Botón Guardar --}}
+            {{-- Botón Actualizar --}}
             <div class="d-grid">
                 <button type="submit" class="btn btn-success btn-sm py-2 fw-bold">
-                    GUARDAR 
+                    ACTUALIZAR
                 </button>
             </div>
 
